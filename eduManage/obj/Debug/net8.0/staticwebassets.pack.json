@@ -1,0 +1,1165 @@
+{
+  "Files": [
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\eduManage.bundle.scp.css",
+      "PackagePath": "staticwebassets\\eduManage.m18rjmod4l.bundle.scp.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets.html",
+      "PackagePath": "staticwebassets\\admin\\assets.html"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\css\\bootstrap-datetimepicker.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\bootstrap-datetimepicker.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\css\\feathericon.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\feathericon.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\css\\select2.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\select2.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\style.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\MaterialIcons-Regular.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\MaterialIcons-Regular.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\MaterialIcons-Regular.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\MaterialIcons-Regular.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\MaterialIcons-Regular.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\MaterialIcons-Regular.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\MaterialIcons-Regular.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\MaterialIcons-Regular.woff2"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\feathericon-1.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\feathericon-1.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\feathericon.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\feathericon.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\feathericon.svg",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\feathericon.svg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\feathericon.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\feathericon.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\fonts\\feathericon.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\feathericon.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\favicon.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\hotel_logo.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\hotel_logo.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\logo.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\logo.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\placeholder.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\placeholder.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-01.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-01.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-02.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-02.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-03.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-03.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-04.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-04.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-05.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-05.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-06.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-06.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-07.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-07.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\product\\product-08.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\product\\product-08.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-01.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-01.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-02.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-02.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-03.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-03.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-04.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-04.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-05.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-05.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-06.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-06.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-07.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-07.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-08.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-08.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-09.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-09.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-10.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-10.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-11.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-11.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-12.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-12.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-13.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-13.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-15.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-15.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-16.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-16.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\profiles\\avatar-17.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\profiles\\avatar-17.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\sent.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\sent.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\img\\video-call.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\img\\video-call.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\bootstrap-datetimepicker.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\bootstrap-datetimepicker.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\chart.morris.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\chart.morris.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\jquery-3.5.1.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\jquery-3.5.1.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\moment.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\moment.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\popper.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\popper.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\script.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\script.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\js\\select2.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\select2.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\datatables\\datatables.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\datatables\\datatables.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\datatables\\datatables.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\datatables\\datatables.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\datatables\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\datatables\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\css\\all.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\css\\all.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\css\\all.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400-1.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400-1.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400-1.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400-1.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900-1.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900-1.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fullcalendar\\fullcalendar.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fullcalendar\\fullcalendar.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fullcalendar\\fullcalendar.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fullcalendar\\fullcalendar.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\fullcalendar\\jquery.fullcalendar.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\fullcalendar\\jquery.fullcalendar.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\morris\\morris.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\morris\\morris.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\morris\\morris.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\morris\\morris.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\raphael\\raphael.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\raphael\\raphael.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\slimscroll\\jquery.slimscroll.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\slimscroll\\jquery.slimscroll.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote-1.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote-1.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.eot"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.ttf"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.woff"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\font\\summernote.woff2"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\summernote-bs4.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\summernote-bs4.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets\\plugins\\summernote\\dist\\summernote-bs4.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\plugins\\summernote\\dist\\summernote-bs4.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\Thumbs.db",
+      "PackagePath": "staticwebassets\\img\\Thumbs.db"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\about.jpg",
+      "PackagePath": "staticwebassets\\img\\about.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\blog-1.jpg",
+      "PackagePath": "staticwebassets\\img\\blog-1.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\blog-2.jpg",
+      "PackagePath": "staticwebassets\\img\\blog-2.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\blog-3.jpg",
+      "PackagePath": "staticwebassets\\img\\blog-3.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\breadcrumb.jpg",
+      "PackagePath": "staticwebassets\\img\\breadcrumb.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\carousel-1.jpg",
+      "PackagePath": "staticwebassets\\img\\carousel-1.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\carousel-2.jpg",
+      "PackagePath": "staticwebassets\\img\\carousel-2.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\fact-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\fact-bg.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\product-1.png",
+      "PackagePath": "staticwebassets\\img\\product-1.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\product-2.png",
+      "PackagePath": "staticwebassets\\img\\product-2.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\product-3.png",
+      "PackagePath": "staticwebassets\\img\\product-3.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\team-1.jpg",
+      "PackagePath": "staticwebassets\\img\\team-1.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\team-2.jpg",
+      "PackagePath": "staticwebassets\\img\\team-2.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\team-3.jpg",
+      "PackagePath": "staticwebassets\\img\\team-3.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\team-4.jpg",
+      "PackagePath": "staticwebassets\\img\\team-4.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\testimonial-1.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-1.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\testimonial-2.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-2.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\testimonial-3.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-3.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\testimonial-4.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-4.jpg"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\img\\water.png",
+      "PackagePath": "staticwebassets\\img\\water.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\animate\\animate.css",
+      "PackagePath": "staticwebassets\\lib\\animate\\animate.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\animate\\animate.min.css",
+      "PackagePath": "staticwebassets\\lib\\animate\\animate.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\counterup\\counterup.min.js",
+      "PackagePath": "staticwebassets\\lib\\counterup\\counterup.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\easing\\easing.js",
+      "PackagePath": "staticwebassets\\lib\\easing\\easing.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\easing\\easing.min.js",
+      "PackagePath": "staticwebassets\\lib\\easing\\easing.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\css\\lightbox.min.css",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\css\\lightbox.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\images\\close.png",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\images\\close.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\images\\loading.gif",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\images\\loading.gif"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\images\\next.png",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\images\\next.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\images\\prev.png",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\images\\prev.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\lightbox\\js\\lightbox.min.js",
+      "PackagePath": "staticwebassets\\lib\\lightbox\\js\\lightbox.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\ajax-loader.gif",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\ajax-loader.gif"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.carousel.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.carousel.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.carousel.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.theme.default.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.theme.default.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.theme.default.min.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.theme.default.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.theme.green.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.theme.green.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.theme.green.min.css",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.theme.green.min.css"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\assets\\owl.video.play.png",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\assets\\owl.video.play.png"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\owl.carousel.js",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\owl.carousel.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\owlcarousel\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\lib\\owlcarousel\\owl.carousel.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\waypoints\\links.php",
+      "PackagePath": "staticwebassets\\lib\\waypoints\\links.php"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\waypoints\\waypoints.min.js",
+      "PackagePath": "staticwebassets\\lib\\waypoints\\waypoints.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\wow\\wow.js",
+      "PackagePath": "staticwebassets\\lib\\wow\\wow.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\lib\\wow\\wow.min.js",
+      "PackagePath": "staticwebassets\\lib\\wow\\wow.min.js"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_accordion.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_accordion.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_alert.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_alert.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_badge.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_badge.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_breadcrumb.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_breadcrumb.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_button-group.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_button-group.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_buttons.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_card.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_card.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_carousel.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_carousel.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_close.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_close.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_containers.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_containers.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_dropdown.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_dropdown.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_forms.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_forms.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_functions.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_functions.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_grid.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_grid.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_helpers.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_helpers.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_images.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_images.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_list-group.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_list-group.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_modal.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_modal.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_nav.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_nav.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_navbar.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_navbar.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_offcanvas.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_offcanvas.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_pagination.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_pagination.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_popover.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_popover.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_progress.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_progress.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_reboot.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_reboot.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_root.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_root.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_spinners.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_spinners.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_tables.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_tables.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_toasts.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_toasts.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_tooltip.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_tooltip.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_transitions.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_transitions.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_type.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_type.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_utilities.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\_variables.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\bootstrap-grid.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\bootstrap-grid.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\bootstrap-reboot.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\bootstrap-reboot.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\bootstrap-utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\bootstrap-utilities.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\bootstrap.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\bootstrap.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_floating-labels.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_floating-labels.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_form-check.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_form-check.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_form-control.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_form-control.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_form-range.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_form-range.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_form-select.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_form-select.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_form-text.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_form-text.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_input-group.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_input-group.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_labels.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_labels.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\forms\\_validation.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\forms\\_validation.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_clearfix.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_clearfix.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_colored-links.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_colored-links.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_position.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_position.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_ratio.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_ratio.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_stretched-link.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_stretched-link.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_text-truncation.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_text-truncation.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\helpers\\_visually-hidden.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\helpers\\_visually-hidden.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_alert.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_alert.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_border-radius.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_border-radius.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_box-shadow.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_box-shadow.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_breakpoints.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_breakpoints.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_buttons.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_caret.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_caret.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_clearfix.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_clearfix.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_color-scheme.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_color-scheme.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_container.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_container.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_deprecate.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_deprecate.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_forms.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_forms.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_gradients.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_gradients.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_grid.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_grid.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_image.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_image.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_list-group.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_list-group.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_lists.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_lists.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_pagination.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_pagination.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_reset-text.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_reset-text.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_resize.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_resize.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_table-variants.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_table-variants.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_text-truncate.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_text-truncate.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_transition.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_transition.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_utilities.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\mixins\\_visually-hidden.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\mixins\\_visually-hidden.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\utilities\\_api.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\utilities\\_api.scss"
+    },
+    {
+      "Id": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\scss\\bootstrap\\scss\\vendor\\_rfs.scss",
+      "PackagePath": "staticwebassets\\scss\\bootstrap\\scss\\vendor\\_rfs.scss"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.eduManage.props",
+      "PackagePath": "build\\eduManage.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.eduManage.props",
+      "PackagePath": "buildMultiTargeting\\eduManage.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.eduManage.props",
+      "PackagePath": "buildTransitive\\eduManage.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.eduManage.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.eduManage.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

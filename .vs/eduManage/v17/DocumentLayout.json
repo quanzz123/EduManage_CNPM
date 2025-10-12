@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\WORKSPACE\\eduManage\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\edumanage.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\edumanage.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\wwwroot\\admin\\assets.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\wwwroot\\admin\\assets.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\shared\\_pageheader.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\shared\\_pageheader.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\shared\\_homebanner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\shared\\_homebanner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|z:\\workspace\\edumanage\\edumanage\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{173D83AC-3EE6-4B6B-BBF7-ADFBB281FE5D}|eduManage\\eduManage.csproj|solutionrelative:edumanage\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "eduManage",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\eduManage.csproj",
+              "RelativeDocumentMoniker": "eduManage\\eduManage.csproj",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\eduManage.csproj",
+              "RelativeToolTip": "eduManage\\eduManage.csproj",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-12T09:33:14.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "assets.html",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets.html",
+              "RelativeDocumentMoniker": "eduManage\\wwwroot\\admin\\assets.html",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\wwwroot\\admin\\assets.html",
+              "RelativeToolTip": "eduManage\\wwwroot\\admin\\assets.html",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-12T09:30:03.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Home\\Index.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAA4CAAAAAAAAAAAAACACAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T07:40:59.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Program.cs",
+              "RelativeDocumentMoniker": "eduManage\\Program.cs",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Program.cs",
+              "RelativeToolTip": "eduManage\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T07:48:21.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "eduManage\\Controllers\\HomeController.cs",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "eduManage\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T09:03:03.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T09:26:33.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T09:26:25.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_PageHeader.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_PageHeader.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Shared\\_PageHeader.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_PageHeader.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Shared\\_PageHeader.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T08:09:40.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_HomeBanner.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_HomeBanner.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Shared\\_HomeBanner.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_HomeBanner.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Shared\\_HomeBanner.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T08:09:24.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\appsettings.json",
+              "RelativeDocumentMoniker": "eduManage\\appsettings.json",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\appsettings.json",
+              "RelativeToolTip": "eduManage\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-12T09:23:10.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAANcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T07:52:37.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "eduManage\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "eduManage\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-12T07:42:16.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "Z:\\WORKSPACE\\eduManage\\eduManage\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "eduManage\\ScaffoldingReadMe.txt",
+              "ToolTip": "Z:\\WORKSPACE\\eduManage\\eduManage\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "eduManage\\ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-10-12T09:09:36.656Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
