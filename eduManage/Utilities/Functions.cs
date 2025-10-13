@@ -27,7 +27,7 @@ namespace eduManage.Utilities
 
         public static string MD5Password(string? text)
         {
-            string str = MD5Hash(text)
+            string str = MD5Hash(text);
             for (int i = 0; i < 1000; i++)
                 {
                     str = MD5Hash(str+ "_" + str);

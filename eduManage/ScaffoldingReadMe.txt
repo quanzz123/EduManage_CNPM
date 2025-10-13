@@ -10,3 +10,5 @@ Add the following code to the Configure method in your Application's Startup cla
             pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
           );
         });
+
+        //scaffold-DbContext "data source= NEYAQUAN\HONGQUAN; initial catalog=EDUMANAGE; integrated security=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

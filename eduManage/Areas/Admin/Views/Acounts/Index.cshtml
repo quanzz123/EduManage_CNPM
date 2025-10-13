@@ -1,0 +1,90 @@
+﻿@model IEnumerable<eduManage.Models.TblUser>
+<div class="page-wrapper">
+	<div class="content container-fluid">
+		<div class="page-header">
+			<div class="row align-items-center">
+				<div class="col">
+					<div class="mt-5">
+						<h4 class="card-title float-left mt-2">Tài khoản người dùng</h4> <a href="add-customer.html" class="btn btn-primary float-right veiwbutton">Thêm mới</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card card-table">
+					<div class="card-body booking_card">
+						<div class="table-responsive">
+							<table class="datatable table table-stripped table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Stt</th>
+										<th>Tên đăng nhập</th>
+										<th>Họ&tên</th>
+										<th>Email</th>
+										<th>SDT</th>
+										<th>Địa chỉ</th>
+										<th>Vai trò</th>
+										<th>Ngày tạo</th>
+										<th>Trạng thái</th>
+
+										<th class="text-right">Tác vụ</th>
+									</tr>
+								</thead>
+								<tbody>
+									@{
+										int stt = 0;
+									}
+									@foreach(var item in Model) {
+
+										<tr>
+											<td>@(stt++)</td>
+											<td>
+												<h2 class="table-avatar">
+													<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/admin/assets/img/profiles/avatar-03.jpg" alt="User Image"></a>
+													<a href="profile.html">@item.UserName<span>#@item.UserId</span></a>
+												</h2>
+											</td>
+											<td>@item.FullName</td>
+											<td>@item.Email</td>
+											<td>@item.Phone</td>
+											<td>@item.Address</td>
+											<td>@item.Role.RoleName</td>
+											<td>@item.CreateDate</td>
+											<td>
+												<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">@(item.IsActive == true ? "Hoạt động" : "Không hoạt động")</a> </div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
+													<div class="dropdown-menu dropdown-menu-right"> 
+														<a class="dropdown-item" asp-action="Edit" asp-route-id="@item.UserId"><i class="fas fa-pencil-alt m-r-5"></i> Sửa</a> 
+														<a class="dropdown-item"asp-action="Delete" asp-route-id="@item.UserId"  data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Vô hiệu hoá</a> </div>
+												</div>
+											</td>
+										</tr>
+									
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="delete_asset" class="modal fade delete-modal" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<img src="assets/img/sent.png" alt="" width="50" height="46">
+					<h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+					<div class="m-t-20">
+						<a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

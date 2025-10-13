@@ -1,0 +1,69 @@
+﻿@model eduManage.Models.TblUser
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="mt-5">
+						<h4 class="card-title float-left mt-2">Vô hiệu hoá tài khoản</h4> <a asp-action="Index" class="btn btn-primary float-right veiwbutton">Trở về</a>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="row formtype">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="UserId">UserId</label>
+                                <input class="form-control" type="text" asp-for="UserId" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="UserName">Tên tài khoản</label>
+                                <input class="form-control" type="text" asp-for="UserName" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="FullName">Họ & tên</label>
+                                <input class="form-control" type="text" asp-for="FullName" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Email">Email</label>
+                                <input class="form-control" type="text" asp-for="Email" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Phone">Số điện thoại</label>
+                                <input class="form-control" type="text" asp-for="Phone" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Address">Địa chỉ</label>
+                                <input class="form-control" type="text" asp-for="Address" readonly>
+                            </div>
+                        </div
+                    </div>
+                </form>
+            </div>
+        </div>
+        <form asp-action="Delete" method="post">
+            <input type="hidden"  asp-for="UserId"/>
+            <button type="submit" class="btn btn-primary buttonedit">Vô hiệu hoá</button>
+            
+        </form>
+        
+    </div>
+</div>
