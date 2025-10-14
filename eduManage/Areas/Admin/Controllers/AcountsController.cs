@@ -65,6 +65,56 @@ namespace eduManage.Areas.Admin.Controllers
             //ViewBag.RoleList = role;
             return View(acc);
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var acc = _context.TblUsers.Find(id);
+            if (acc == null)
+            {
+                return NotFound();
+            }
+            var role = (from r in _context.TblRoles
+                        select new SelectListItem()
+                        {
+                            Text = r.RoleName,
+                            Value = r.RoleId.ToString()
+                        }
+                        ).ToList();
+            role.Insert(0, new SelectListItem()
+            {
+                Text = "--Select Role--",
+                Value = string.Empty
+            });
+            ViewBag.RoleList = role;
+            return View(acc);
+        }
+        [HttpPost]  
+        public IActionResult Edit(TblUser? acc)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.TblUsers.Update(acc);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            var role = (from r in _context.TblRoles
+                        select new SelectListItem()
+                        {
+                            Text = r.RoleName,
+                            Value = r.RoleId.ToString()
+                        }
+                        ).ToList();
+            role.Insert(0, new SelectListItem()
+            {
+                Text = "--Select Role--",
+                Value = string.Empty
+            });
+            ViewBag.RoleList = role;
+            return View(acc);
+        }
 
         [HttpGet]
         public IActionResult Delete(int? id)
