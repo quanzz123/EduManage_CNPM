@@ -12,3 +12,5 @@ Add the following code to the Configure method in your Application's Startup cla
         });
 
         //scaffold-DbContext "data source= NEYAQUAN\HONGQUAN; initial catalog=EDUMANAGE; integrated security=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+        
+        scaffold-DbContext "data source= NEYAQUAN\HONGQUAN; initial catalog=EDUMANAGE; integrated security=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force

@@ -19,7 +19,7 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-    
+   
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,7 +49,6 @@ public partial class EdumanageContext : DbContext
 
             entity.HasOne(d => d.Role).WithMany(p => p.TblUsers)
                 .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblUsers_tblRoles");
         });
 

@@ -36,37 +36,33 @@ namespace eduManage.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(TblUser acc)
+        public async Task<IActionResult> Create(TblUser? acc)
         {
-            if (acc.RoleId == 0)
-            {
-                ModelState.AddModelError("RoleId", "The Role field is required.");
-            }
+            
 
             if (ModelState.IsValid)
             {
                 acc.CreateDate = DateTime.Now;
                 acc.IsActive = true;
                 _context.TblUsers.Add(acc);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            var role = _context.TblRoles
-                .Select(r => new SelectListItem
-                {
-                    Text = r.RoleName,
-                    Value = r.RoleId.ToString()
-                }).ToList();
+            //var role = _context.TblRoles
+            //    .Select(r => new SelectListItem
+            //    {
+            //        Text = r.RoleName,
+            //        Value = r.RoleId.ToString()
+            //    }).ToList();
 
-            role.Insert(0, new SelectListItem
-            {
-                Text = "--Select Role--",
-                Value = "0"
-            });
+            //role.Insert(0, new SelectListItem
+            //{
+            //    Text = "--Select Role--",
+            //    Value = "0"
+            //});
 
-            ViewBag.RoleList = role;
+            //ViewBag.RoleList = role;
             return View(acc);
         }
 

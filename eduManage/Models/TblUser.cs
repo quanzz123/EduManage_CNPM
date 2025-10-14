@@ -7,7 +7,7 @@ public partial class TblUser
 {
     public int UserId { get; set; }
 
-    public int RoleId { get; set; }
+    public int? RoleId { get; set; }
 
     public string UserName { get; set; } = null!;
 
@@ -25,5 +25,5 @@ public partial class TblUser
 
     public bool? IsActive { get; set; }
 
-    public virtual TblRole Role { get; set; } = null!;
+    public virtual TblRole? Role { get; set; }
 }

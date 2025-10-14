@@ -1,7 +1,7 @@
 eduManage/appsettings.json
 .vs/
-bin/
-obj/
+eduManage/bin/
+eduManage/obj/
 
 
 
