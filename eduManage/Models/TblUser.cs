@@ -26,4 +26,8 @@ public partial class TblUser
     public bool? IsActive { get; set; }
 
     public virtual TblRole? Role { get; set; }
+
+    public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
+
+    public virtual ICollection<TblClass> TblClasses { get; set; } = new List<TblClass>();
 }
