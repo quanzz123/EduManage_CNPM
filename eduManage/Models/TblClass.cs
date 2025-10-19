@@ -29,6 +29,8 @@ public partial class TblClass
 
     public DateTime? ModifedDate { get; set; }
 
+    public int? MaxStudents { get; set; }
+
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     public virtual TblUser Teacher { get; set; } = null!;

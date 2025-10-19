@@ -24,7 +24,6 @@ public partial class EdumanageContext : DbContext
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
     
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblClass>(entity =>
