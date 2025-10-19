@@ -46,9 +46,9 @@
 											<td>@item.Teacher.FullName</td>
 											<td>@item.Schedule</td>
 											<td>@item.MaxStudents</td>
-											<td>@item.StartDate</td>
-											<td>@item.EndDate</td>
-											<td>@item.CreateDate</td>
+											<td>@item.StartDate.Value.ToString("dd/MM/yyyy")</td>
+											<td>@item.EndDate.Value.ToString("dd/MM/yyyy")</td>
+											<td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
 											<td>
 												<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">@(item.IsActive == true ? "Diễn ra" : "Kết thúc")</a> </div>
 											</td>
