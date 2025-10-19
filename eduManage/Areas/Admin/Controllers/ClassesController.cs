@@ -1,5 +1,6 @@
 ﻿using eduManage.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eduManage.Areas.Admin.Controllers
 {
@@ -13,8 +14,9 @@ namespace eduManage.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            
-            return View();
+            var classList = _context.TblClasses.Include(m => m.Teacher).OrderBy(m => m.ClassId).ToList();
+
+            return View(classList);
         }
     }
 }
