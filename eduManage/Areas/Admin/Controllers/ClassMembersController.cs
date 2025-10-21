@@ -31,7 +31,13 @@ namespace eduManage.Areas.Admin.Controllers
                       })
                 .Where(m => m.ClassId == id)
                 .ToList();
+            ViewBag.ClassId = id;
             return View(memberList);
+        }
+        public IActionResult Create(int id)
+        {
+            ViewBag.ClassId = id;
+            return View();
         }
     }
 }
