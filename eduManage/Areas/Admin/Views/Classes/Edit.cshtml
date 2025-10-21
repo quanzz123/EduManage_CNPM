@@ -1,0 +1,112 @@
+﻿@model eduManage.Models.TblClass
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="mt-5">
+                        <h4 class="card-title float-left mt-2">Sửa thông tin lớp học</h4>
+                        <a asp-action="Index" class="btn btn-primary float-right veiwbutton">Trở về</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form asp-action="Edit" asp-area="admin" asp-controller="Classes" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="row formtype">
+
+                        <input type="hidden" asp-for="ClassId" />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="ClassName">Tên lớp</label>
+                                <input class="form-control" type="text" asp-for="ClassName" />
+                                <span asp-validation-for="ClassName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="Description">Mô tả</label>
+                                <textarea class="form-control" rows="3" asp-for="Description"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Subject">Môn học</label>
+                                <input class="form-control" type="text" asp-for="Subject" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="TeacherId">Giáo viên phụ trách</label>
+                                <select class="form-control" asp-for="TeacherId" asp-items="ViewBag.TeacherList">
+                                    <option value="">-- Chọn giáo viên --</option>
+                                </select>
+                                <span asp-validation-for="TeacherId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="MaxStudents">Số lượng học viên tối đa</label>
+                                <input class="form-control" type="number" asp-for="MaxStudents" />
+                                <span asp-validation-for="MaxStudents" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="StartDate">Ngày bắt đầu</label>
+                                <input class="form-control" type="date" asp-for="StartDate" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="EndDate">Ngày kết thúc</label>
+                                <input class="form-control" type="date" asp-for="EndDate" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Schedule">Lịch học</label>
+                                <input class="form-control" type="text" asp-for="Schedule" />
+                                <span asp-validation-for="Schedule" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="IsActive">Trạng thái</label>
+                                <select class="form-control" asp-for="IsActive">
+                                    <option value="true">Hoạt động</option>
+                                    <option value="false">Ngừng hoạt động</option>
+                                </select>
+                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

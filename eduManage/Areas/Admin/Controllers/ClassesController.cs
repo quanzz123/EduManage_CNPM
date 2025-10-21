@@ -50,5 +50,24 @@ namespace eduManage.Areas.Admin.Controllers
                 }
                 return View(cls);
             }
+            public IActionResult Edit(int id)
+            {
+                var cls = _context.TblClasses.Find(id);
+                ViewBag.TeacherList = new SelectList(_context.TblUsers.Where(u => u.RoleId == 2), "UserId", "FullName");
+                return View(cls);
+            }
+            [HttpPost]
+            public IActionResult Edit(TblClass model)
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Update(model);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            ViewBag.TeacherList = new SelectList(_context.TblUsers.Where(u => u.RoleId == 2), "UserId", "FullName");
+            return View(model);
+            }
         }
     }

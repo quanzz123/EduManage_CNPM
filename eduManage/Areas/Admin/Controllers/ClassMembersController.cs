@@ -1,5 +1,6 @@
 ﻿using eduManage.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace eduManage.Areas.Admin.Controllers
 {
@@ -34,10 +35,46 @@ namespace eduManage.Areas.Admin.Controllers
             ViewBag.ClassId = id;
             return View(memberList);
         }
-        public IActionResult Create(int id)
+        public IActionResult Edit(int id)
         {
-            ViewBag.ClassId = id;
-            return View();
+            var member = _context.TblClassMembers.Find(id);
+
+            ViewBag.StudentList = new SelectList(
+                _context.TblUsers.Where(u => u.RoleId == 3), // 3 = học viên
+                "UserId", "FullName", member?.UserId
+            );
+
+            ViewBag.ClassList = new SelectList(
+                _context.TblClasses,
+                "ClassId", "ClassName", member?.ClassId
+            );
+
+            return View(member);
         }
+
+        [HttpPost]
+        public IActionResult Edit(TblClassMember model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Update(model);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // Load lại danh sách khi có lỗi
+            ViewBag.StudentList = new SelectList(
+                _context.TblUsers.Where(u => u.RoleId == 3),
+                "UserId", "FullName", model.UserId
+            );
+
+            ViewBag.ClassList = new SelectList(
+                _context.TblClasses,
+                "ClassId", "ClassName", model.ClassId
+            );
+
+            return View(model);
+        }
+
     }
 }
