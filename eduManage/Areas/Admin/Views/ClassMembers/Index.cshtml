@@ -1,11 +1,11 @@
-﻿@model IEnumerable<eduManage.Models.TblClass>
+﻿@model IEnumerable<eduManage.Models.TblClassMember>
 <div class="page-wrapper">
 	<div class="content container-fluid">
 		<div class="page-header">
 			<div class="row align-items-center">
 				<div class="col">
 					<div class="mt-5">
-						<h4 class="card-title float-left mt-2">Dach sách lớp học</h4> <a asp-action="Create" class="btn btn-primary float-right veiwbutton">Thêm mới</a>
+						<h4 class="card-title float-left mt-2">Dach sách thành viên</h4> <a asp-action="Create" class="btn btn-primary float-right veiwbutton">Thêm mới</a>
 					</div>
 				</div>
 			</div>
@@ -19,14 +19,14 @@
 								<thead>
 									<tr>
 										<th>Stt</th>
-										<th>Tên lớp học</th>
-										<th>GV</th>
-										<th>Lịch học</th>
-										<th>Số lượng</th>
-										<th>Bắt đầu</th>
-										<th>Kết thúc</th>
-										<th>Ngày tạo</th>
-										<th>Trạng thái</th>
+										<th>Tên</th>
+									
+										<th>trạng thái</th>
+										<th>ngày tham gia</th>
+										<th>tiến độ</th>
+										<th>điểm</th>
+									
+									
 
 										<th class="text-right">Tác vụ</th>
 									</tr>
@@ -41,24 +41,21 @@
 										<tr>
 											<td>@(stt++)</td>
 											<td>
-												@item.ClassName
+                                                @item.User.FullName
 											</td>
-											<td>@item.Teacher.FullName</td>
-											<td>@item.Schedule</td>
-											<td>@item.MaxStudents</td>
-											<td>@item.StartDate.Value.ToString("dd/MM/yyyy")</td>
-											<td>@item.EndDate.Value.ToString("dd/MM/yyyy")</td>
-											<td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
-											<td>
-												<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">@(item.IsActive == true ? "Diễn ra" : "Kết thúc")</a> </div>
-											</td>
+											<td>@item.Status</td>
+											<td>@item.JoinDate.Value.ToString("dd/MM/yyyy")</td>
+											<td>@item.Progress</td>
+											<td>@item.FinalScore</td>
+											
+		
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" asp-action="Edit" asp-route-id="@item.ClassId"><i class="fas fa-pencil-alt m-r-5"></i> Sửa</a>
-														<a class="dropdown-item" asp-action="Index" asp-controller="ClassMembers" asp-route-id="@item.ClassId"><i class="fas fa-pencil-alt m-r-5"></i>Danh sách</a>
-														<a class="dropdown-item" asp-action="Delete" asp-route-id="@item.ClassId" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i>xoá</a>
+														<a class="dropdown-item" asp-action="Edit" asp-route-id="@item.MemberId"><i class="fas fa-pencil-alt m-r-5"></i> Sửa</a>
+														
+														<a class="dropdown-item" asp-action="Delete" asp-route-id="@item.MemberId" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i>xoá</a>
 													</div>
 												</div>
 											</td>
