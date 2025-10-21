@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -74,6 +75,71 @@ namespace eduManage.Areas.Admin.Controllers
             );
 
             return View(model);
+        }
+
+        public IActionResult Create(int id)
+        {
+            var cls = _context.TblClasses.Find(id);
+            if (cls == null) return NotFound();
+
+            ViewBag.ClassId = id;
+            ViewBag.ClassName = cls.ClassName;
+
+            var students = _context.TblUsers
+                .Where(u => u.RoleId == 3)
+                .Select(u => new SelectListItem
+                {
+                    Text = u.FullName,
+                    Value = u.UserId.ToString()
+                })
+                .ToList();
+
+            ViewBag.StudentList = students;
+
+            var vm = new ClassMemberVM
+            {
+                ClassId = id,
+                JoinDate = DateTime.Now,
+                Status = "Enrolled"
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ClassMemberVM vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var member = new TblClassMember
+                {
+                    ClassId = vm.ClassId,
+                    UserId = vm.UserId,
+                    JoinDate = vm.JoinDate,
+                    Status = vm.Status,
+                    Progress = vm.Progress,
+                    FinalScore = vm.FinalScore,
+                    Note = vm.Note
+                };
+
+                _context.TblClassMembers.Add(member);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", new { id = vm.ClassId });
+            }
+
+            // Nếu có lỗi, load lại dữ liệu để view hiển thị đúng
+            ViewBag.StudentList = _context.TblUsers
+                .Where(u => u.RoleId == 3)
+                .Select(u => new SelectListItem
+                {
+                    Text = u.FullName,
+                    Value = u.UserId.ToString()
+                })
+                .ToList();
+
+            return View(vm);
         }
 
     }
