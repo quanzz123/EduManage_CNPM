@@ -37,12 +37,13 @@ namespace eduManage.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                string savedFileUrl = SaveFile(assignment.FileUpload);
                 var newAssignment = new Assignment
                 {
                     ClassId = assignment.ClassId,
                     Title = assignment.Title, 
                     Description = assignment.Description,
-                    FileUrl = assignment.FileUrl,
+                    FileUrl = savedFileUrl,
                     Deadline = assignment.Deadline,
                     CreatedBy = assignment.CreatedBy,
                     CreatedDate = DateTime.Now,
@@ -54,5 +55,89 @@ namespace eduManage.Areas.Admin.Controllers
             }
             return View(assignment);
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var assignment = _context.Assignments.Find(id);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+            var assignmentVM = new AssignmentVM
+            {
+                AssignmentId = assignment.AssignmentId,
+                ClassId = assignment.ClassId,
+                Title = assignment.Title,
+                Description = assignment.Description,
+                FileUrl = assignment.FileUrl,
+                Deadline = assignment.Deadline,
+                CreatedBy = 3,
+                CreatedDate = assignment.CreatedDate,
+                IsActive = assignment.IsActive
+            };
+            return View(assignmentVM);
+        }
+        [HttpPost]
+        public IActionResult Edit(AssignmentVM assignmentVM)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(assignmentVM);
+            }
+
+            var assignment = _context.Assignments.Find(assignmentVM.AssignmentId);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+
+            // Nếu có file mới được upload
+            if (assignmentVM.FileUpload != null)
+            {
+                string newFileUrl = SaveFile(assignmentVM.FileUpload);
+                assignment.FileUrl = newFileUrl;
+            }
+
+            // Cập nhật các trường khác
+            assignment.Title = assignmentVM.Title;
+            assignment.Description = assignmentVM.Description;
+            assignment.Deadline = assignmentVM.Deadline;
+            //assignment.IsActive = assignmentVM.IsActive;
+            assignment.ModifyDate = DateTime.Now;
+
+            _context.Assignments.Update(assignment);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = assignment.ClassId });
+        }
+        private string SaveFile(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return null;
+
+            // Thư mục lưu file trong wwwroot/uploads
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+            // Tạo thư mục nếu chưa có
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            // Tạo tên file duy nhất
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+            var filePath = Path.Combine(uploadPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+
+            
+            return "/uploads/" + fileName;
+        }
+
     }
 }

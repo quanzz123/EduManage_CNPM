@@ -22,5 +22,9 @@ namespace eduManage.ViewModels
         public DateTime? ModifyDate { get; set; }
 
         public bool? IsActive { get; set; }
+
+        [Display(Name = "Tải file lên")]
+        public IFormFile? FileUpload { get; set; } // file người dùng upload
+
     }
 }

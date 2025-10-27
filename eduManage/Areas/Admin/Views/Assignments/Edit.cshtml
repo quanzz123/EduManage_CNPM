@@ -1,7 +1,7 @@
 ﻿@model eduManage.ViewModels.AssignmentVM
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <script src="~/ckeditor/ckeditor.js"></script>
 @* <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> *@
@@ -12,7 +12,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="mt-5">
-                        <h4 class="card-title float-left mt-2">Thêm mới bài tậpc</h4>
+                        <h4 class="card-title float-left mt-2">Sửa bài tậpc</h4>
                         <a asp-action="Index" class="btn btn-primary float-right veiwbutton">Trở về</a>
                     </div>
                 </div>
@@ -21,10 +21,12 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <form asp-action="Create" asp-area="admin" asp-controller="Assignments" method="post" enctype="multipart/form-data">
+                <form asp-action="Edit" asp-area="admin" asp-controller="Assignments" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="All" class="text-danger"></div>
 
-                    <input type="hidden" asp-for="ClassId" value="@ViewBag.ClassId" />
+                    <input type="hidden" asp-for="ClassId" />
+                    <input type="hidden" asp-for="AssignmentId" />
+
 
                     <div class="row formtype">
 
@@ -42,7 +44,7 @@
                                 <input class="form-control" type="file" asp-for="FileUpload" />
                                 <span asp-validation-for="FileUpload" class="text-danger"></span>
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
