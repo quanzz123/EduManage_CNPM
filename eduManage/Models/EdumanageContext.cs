@@ -15,6 +15,10 @@ public partial class EdumanageContext : DbContext
     {
     }
 
+    public virtual DbSet<Assignment> Assignments { get; set; }
+
+    public virtual DbSet<Submission> Submissions { get; set; }
+
     public virtual DbSet<TblClass> TblClasses { get; set; }
 
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
@@ -23,9 +27,40 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-    
+   
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Assignment>(entity =>
+        {
+            entity.Property(e => e.ClassId).HasColumnName("ClassID");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Deadline).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(250);
+            entity.Property(e => e.ModifyDate).HasColumnType("datetime");
+            entity.Property(e => e.Title).HasMaxLength(250);
+
+            entity.HasOne(d => d.Class).WithMany(p => p.Assignments)
+                .HasForeignKey(d => d.ClassId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assignments_tblClasses");
+        });
+
+        modelBuilder.Entity<Submission>(entity =>
+        {
+            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.SubmitDate).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Assignment).WithMany(p => p.Submissions)
+                .HasForeignKey(d => d.AssignmentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Submissions_Assignments");
+
+            entity.HasOne(d => d.AssignmentNavigation).WithMany(p => p.Submissions)
+                .HasForeignKey(d => d.AssignmentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Submissions_tblUsers");
+        });
+
         modelBuilder.Entity<TblClass>(entity =>
         {
             entity.HasKey(e => e.ClassId);

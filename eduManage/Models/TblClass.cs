@@ -31,6 +31,8 @@ public partial class TblClass
 
     public int? MaxStudents { get; set; }
 
+    public virtual ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
+
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     public virtual TblUser Teacher { get; set; } = null!;
