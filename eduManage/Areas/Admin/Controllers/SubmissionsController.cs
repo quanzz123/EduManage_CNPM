@@ -51,5 +51,45 @@ namespace eduManage.Areas.Admin.Controllers
 
             return PhysicalFile(filePath, "application/octet-stream", Path.GetFileName(filePath));
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var submission = _context.Submissions.Find(id);
+            var Student = _context.TblUsers.Find(submission.StudentId);
+            var vm = new SubmissionVM
+            {
+                SubmissionId = submission.SubmissionId,
+                AssignmentId = submission.AssignmentId,
+                StudentId = submission.StudentId,
+                FileUrl = submission.FileUrl,
+                SubmitDate = submission.SubmitDate,
+                Score = submission.Score,
+                Feedback = submission.Feedback,
+                Status = submission.Status,
+                StudientName = Student.FullName
+            };
+
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult Edit(SubmissionVM vm)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            var submission = _context.Submissions.Find(vm.SubmissionId);
+            if (submission == null)
+            {
+                return NotFound();
+            }
+             
+            submission.Score = vm.Score;
+            submission.Feedback = vm.Feedback;
+            submission.Status = "đã chấm";
+            _context.Submissions.Update(submission);
+            _context.SaveChanges();
+            return RedirectToAction("Index", new { id = vm.AssignmentId });
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace eduManage.Areas.Admin.Controllers
         public IActionResult Details(int id)
         {
 
-            var exerciseLis = _context.Assignments.Where(a => a.ClassId == id).ToList();
+            var exerciseLis = _context.Assignments.Where(a => a.ClassId == id && a.IsActive == true).ToList();
             ViewBag.ClassId = id;
             return View(exerciseLis);
         }
@@ -137,6 +137,18 @@ namespace eduManage.Areas.Admin.Controllers
 
             
             return "/uploads/" + fileName;
+        }
+        public IActionResult Delete(int id)
+        {
+            var assignment = _context.Assignments.Find(id);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+            assignment.IsActive = false;
+            _context.Assignments.Update(assignment);
+            _context.SaveChanges();
+            return RedirectToAction("Details", new { id = assignment.ClassId });
         }
 
     }

@@ -17,5 +17,7 @@
         public string? Feedback { get; set; }
 
         public string? Status { get; set; }
+
+        public string? StudientName { get; set; }
     }
 }
