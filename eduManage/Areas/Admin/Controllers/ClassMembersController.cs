@@ -13,69 +13,121 @@ namespace eduManage.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int id)
+        public IActionResult Index(int? id)
         {
-            var memberList = _context.TblClassMembers
-                .Join(_context.TblUsers,
-                      cm => cm.UserId,
-                      u => u.UserId,
-                      (cm, u) => new TblClassMember
-                      {
-                          MemberId = cm.MemberId,
-                          ClassId = cm.ClassId,
-                          JoinDate = cm.JoinDate,
-                          Status = cm.Status,
-                          Progress = cm.Progress,
-                          FinalScore = cm.FinalScore,
-                          Note = cm.Note,
-                          UserId = cm.UserId,
-                          User = u
-                      })
-                .Where(m => m.ClassId == id)
-                .ToList();
-            ViewBag.ClassId = id;
+            // Join 3 bảng: ClassMembers + Users + Classes
+            var query = from cm in _context.TblClassMembers
+                        join u in _context.TblUsers on cm.UserId equals u.UserId
+                        join c in _context.TblClasses on cm.ClassId equals c.ClassId
+                        select new TblClassMember
+                        {
+                            MemberId = cm.MemberId,
+                            ClassId = cm.ClassId,
+                            JoinDate = cm.JoinDate,
+                            Status = cm.Status,
+                            Progress = cm.Progress,
+                            FinalScore = cm.FinalScore,
+                            Note = cm.Note,
+                            UserId = cm.UserId,
+                            User = u,
+                            Class = c // ⚡ Gán luôn Class để hiển thị
+                        };
+
+            if (id != null)
+            {
+                query = query.Where(m => m.ClassId == id);
+                ViewBag.ClassId = id;
+            }
+
+            var memberList = query.ToList();
             return View(memberList);
         }
+        // GET: admin/ClassMembers/Edit/5
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var member = _context.TblClassMembers.Find(id);
+            if (member == null)
+            {
+                return NotFound();
+            }
 
-            ViewBag.StudentList = new SelectList(
-                _context.TblUsers.Where(u => u.RoleId == 3), // 3 = học viên
-                "UserId", "FullName", member?.UserId
-            );
-
-            ViewBag.ClassList = new SelectList(
-                _context.TblClasses,
-                "ClassId", "ClassName", member?.ClassId
-            );
-
+            ViewBag.StudentList = new SelectList(_context.TblUsers, "UserId", "FullName", member.UserId);
+            ViewBag.ClassList = new SelectList(_context.TblClasses, "ClassId", "ClassName", member.ClassId);
             return View(member);
         }
 
+        // POST: admin/ClassMembers/Edit/5
         [HttpPost]
-        public IActionResult Edit(TblClassMember model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, TblClassMember model)
         {
+            if (id != model.MemberId)
+                return NotFound();
+
             if (ModelState.IsValid)
             {
-                _context.Update(model);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    _context.Update(model);
+                    _context.SaveChanges();
+                    TempData["SuccessMessage"] = "Cập nhật thành viên thành công!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Lỗi khi cập nhật dữ liệu!");
+                }
             }
 
-            // Load lại danh sách khi có lỗi
-            ViewBag.StudentList = new SelectList(
-                _context.TblUsers.Where(u => u.RoleId == 3),
-                "UserId", "FullName", model.UserId
-            );
-
-            ViewBag.ClassList = new SelectList(
-                _context.TblClasses,
-                "ClassId", "ClassName", model.ClassId
-            );
+            // Reload dropdown nếu có lỗi
+            ViewBag.StudentList = new SelectList(_context.TblUsers, "UserId", "FullName", model.UserId);
+            ViewBag.ClassList = new SelectList(_context.TblClasses, "ClassId", "ClassName", model.ClassId);
 
             return View(model);
         }
+
+
+        /*        public IActionResult Edit(int id)
+                {
+                    var member = _context.TblClassMembers.Find(id);
+
+                    ViewBag.StudentList = new SelectList(
+                        _context.TblUsers.Where(u => u.RoleId == 3), // 3 = học viên
+                        "UserId", "FullName", member?.UserId
+                    );
+
+                    ViewBag.ClassList = new SelectList(
+                        _context.TblClasses,
+                        "ClassId", "ClassName", member?.ClassId
+                    );
+
+                    return View(member);
+                }
+
+                [HttpPost]
+                public IActionResult Edit(TblClassMember model)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _context.Update(model);
+                        _context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+                    // Load lại danh sách khi có lỗi
+                    ViewBag.StudentList = new SelectList(
+                        _context.TblUsers.Where(u => u.RoleId == 3),
+                        "UserId", "FullName", model.UserId
+                    );
+
+                    ViewBag.ClassList = new SelectList(
+                        _context.TblClasses,
+                        "ClassId", "ClassName", model.ClassId
+                    );
+
+                    return View(model);
+                }*/
 
         public IActionResult Create(int id)
         {

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<eduManage.Models.Assignment>
+
+@{
+    ViewData["Title"] = "Danh sách bài tập";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary fw-bold"> Danh sách bài tập được giao</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">Hiện tại bạn chưa có bài tập nào được giao.</div>
+    }
+    else
+    {
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Hạn nộp</th>
+                    <th scope="col">Tệp đính kèm</th>
+                    <th scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int stt = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(stt++)</td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        @* <td>@item.Deadline.ToString("dd/MM/yyyy HH:mm")</td> *@
+                        @(item.Deadline.HasValue? item.Deadline.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa có hạn")
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.FileUrl))
+                            {
+                                <a href="@item.FileUrl" target="_blank" class="btn btn-outline-secondary btn-sm">
+                                    📎 Tải xuống
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Không có</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
+                               class="btn btn-outline-primary btn-sm">
+                                ✏️ Nộp bài
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

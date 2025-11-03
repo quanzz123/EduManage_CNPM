@@ -16,89 +16,89 @@ public partial class EdumanageContext : DbContext
     {
     }
 
+    public virtual DbSet<Assignment> Assignments { get; set; }
+
+    public virtual DbSet<Submission> Submissions { get; set; }
+
     public virtual DbSet<TblClass> TblClasses { get; set; }
 
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
+
+    public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
+
+    public virtual DbSet<TblLessionContent> TblLessionContents { get; set; }
+
+    public virtual DbSet<TblLesson> TblLessons { get; set; }
 
     public virtual DbSet<TblRole> TblRoles { get; set; }
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-
+  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Assignment>(entity =>
+        {
+            entity.HasOne(d => d.Class).WithMany(p => p.Assignments)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assignments_tblClasses");
+        });
+
+        modelBuilder.Entity<Submission>(entity =>
+        {
+            entity.HasOne(d => d.Assignment).WithMany(p => p.Submissions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Submissions_Assignments");
+
+            entity.HasOne(d => d.AssignmentNavigation).WithMany(p => p.Submissions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Submissions_tblUsers");
+        });
+
         modelBuilder.Entity<TblClass>(entity =>
         {
-            entity.HasKey(e => e.ClassId);
-
-            entity.ToTable("tblClasses");
-
-            entity.Property(e => e.ClassId).HasColumnName("ClassID");
-            entity.Property(e => e.ClassName).HasMaxLength(250);
-            entity.Property(e => e.CreateDate).HasColumnType("datetime");
-            entity.Property(e => e.EndDate).HasColumnType("datetime");
-            entity.Property(e => e.Image).HasMaxLength(250);
-            entity.Property(e => e.ModifedDate).HasColumnType("datetime");
-            entity.Property(e => e.Schedule).HasMaxLength(50);
-            entity.Property(e => e.StartDate).HasColumnType("datetime");
-            entity.Property(e => e.Subject).HasMaxLength(250);
-            entity.Property(e => e.TeacherId).HasColumnName("TeacherID");
-
             entity.HasOne(d => d.Teacher).WithMany(p => p.TblClasses)
-                .HasForeignKey(d => d.TeacherId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblClasses_tblUsers");
         });
 
         modelBuilder.Entity<TblClassMember>(entity =>
         {
-            entity.HasKey(e => e.MemberId);
-
-            entity.ToTable("tblClassMembers");
-
-            entity.Property(e => e.MemberId).HasColumnName("MemberID");
-            entity.Property(e => e.ClassId).HasColumnName("ClassID");
-            entity.Property(e => e.JoinDate).HasColumnType("datetime");
-            entity.Property(e => e.Status).HasMaxLength(50);
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-
             entity.HasOne(d => d.Class).WithMany(p => p.TblClassMembers)
-                .HasForeignKey(d => d.ClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblClassMembers_tblClasses");
 
-            entity.HasOne(d => d.User).WithMany(p => p.TblClassMembers)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_tblClassMembers_tblUsers");
+            entity.HasOne(d => d.User).WithMany(p => p.TblClassMembers).HasConstraintName("FK_tblClassMembers_tblUsers");
         });
 
-        modelBuilder.Entity<TblRole>(entity =>
+        modelBuilder.Entity<TblLearningProgress>(entity =>
         {
-            entity.HasKey(e => e.RoleId);
+            entity.HasOne(d => d.LastContent).WithMany(p => p.TblLearningProgresses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblLearningProgress_tblLessionContent");
 
-            entity.ToTable("tblRoles");
+            entity.HasOne(d => d.User).WithMany(p => p.TblLearningProgresses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblLearningProgress_tblUsers");
+        });
 
-            entity.Property(e => e.RoleDescription).HasMaxLength(250);
-            entity.Property(e => e.RoleName).HasMaxLength(50);
+        modelBuilder.Entity<TblLessionContent>(entity =>
+        {
+            entity.HasOne(d => d.Lession).WithMany(p => p.TblLessionContents)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblLessionContent_tblLessons");
+        });
+
+        modelBuilder.Entity<TblLesson>(entity =>
+        {
+            entity.HasOne(d => d.Class).WithMany(p => p.TblLessons)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblLessons_tblClasses");
         });
 
         modelBuilder.Entity<TblUser>(entity =>
         {
-            entity.HasKey(e => e.UserId);
-
-            entity.ToTable("tblUsers");
-
-            entity.Property(e => e.Address).HasMaxLength(150);
-            entity.Property(e => e.CreateDate).HasColumnType("datetime");
-            entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.FullName).HasMaxLength(100);
-            entity.Property(e => e.PassworkHash).HasMaxLength(255);
-            entity.Property(e => e.Phone).HasMaxLength(20);
-            entity.Property(e => e.UserName).HasMaxLength(50);
-
-            entity.HasOne(d => d.Role).WithMany(p => p.TblUsers)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK_tblUsers_tblRoles");
+            entity.HasOne(d => d.Role).WithMany(p => p.TblUsers).HasConstraintName("FK_tblUsers_tblRoles");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -138,6 +138,7 @@ namespace eduManage.Areas.Admin.Controllers
             
             return "/uploads/" + fileName;
         }
+
         public IActionResult Delete(int id)
         {
             var assignment = _context.Assignments.Find(id);
