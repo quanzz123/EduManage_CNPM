@@ -20,7 +20,9 @@ public partial class EdumanageContext : DbContext
     public virtual DbSet<Submission> Submissions { get; set; }
 
     public virtual DbSet<TblClass> TblClasses { get; set; }
-
+    public virtual DbSet<TblLesson> TblLessons { get; set; }              
+    public virtual DbSet<TblLessionContent> TblLessonContents { get; set; }  
+    public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
 
     public virtual DbSet<TblRole> TblRoles { get; set; }

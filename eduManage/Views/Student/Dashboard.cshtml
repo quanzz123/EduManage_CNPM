@@ -1,0 +1,209 @@
+﻿@{
+    ViewData["Title"] = "Trang sinh viên";
+    Layout = "_Layout";
+    var studentName = Context.Session.GetString("StudentName");
+}
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <!-- Header Welcome -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="bg-light rounded p-5 text-center">
+                    <h1 class="display-4 text-primary mb-3">Xin chào, @studentName!</h1>
+                    <p class="fs-5 text-dark">Chào mừng bạn đến với hệ thống quản lý học tập EduManage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="text-primary mb-4">Truy cập nhanh</h3>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <a class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
+                           asp-controller="Student" asp-action="Classes">
+                            <i class="fas fa-book fa-3x mb-3"></i>
+                            <span>Lớp học của tôi</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-success btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
+                           asp-controller="Assignment" asp-action="Index">
+                            <i class="fas fa-tasks fa-3x mb-3"></i>
+                            <span>Bài tập</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-info btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
+                           asp-controller="Student" asp-action="Lessons">
+                            <i class="fas fa-play-circle fa-3x mb-3"></i>
+                            <span>Bài học</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
+                           asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home fa-3x mb-3"></i>
+                            <span>Trang chủ</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activities & Stats -->
+        <div class="row">
+            <!-- Thống kê học tập -->
+            <div class="col-lg-8 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Thống kê học tập</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-primary">5</h3>
+                                    <p class="mb-0">Lớp học</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-success">12</h3>
+                                    <p class="mb-0">Bài học</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-warning">8</h3>
+                                    <p class="mb-0">Bài tập</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-info">85%</h3>
+                                    <p class="mb-0">Tiến độ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông báo mới -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0"><i class="fas fa-bell me-2"></i>Thông báo mới</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Bài tập mới</h6>
+                                    <small>2 giờ trước</small>
+                                </div>
+                                <p class="mb-1">Bài tập Toán học chương 3 đã được đăng</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Lớp học mới</h6>
+                                    <small>1 ngày trước</small>
+                                </div>
+                                <p class="mb-1">Bạn đã được thêm vào lớp Lập trình .NET</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Deadline sắp tới</h6>
+                                    <small>2 ngày trước</small>
+                                </div>
+                                <p class="mb-1">Bài tập Cơ sở dữ liệu hết hạn trong 3 ngày</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài tập gần đây -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-warning text-dark">
+                        <h4 class="mb-0"><i class="fas fa-tasks me-2"></i>Bài tập gần đây</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Bài tập</th>
+                                        <th>Môn học</th>
+                                        <th>Hạn nộp</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bài tập SQL nâng cao</td>
+                                        <td>Cơ sở dữ liệu</td>
+                                        <td>15/11/2024</td>
+                                        <td><span class="badge bg-warning">Chưa nộp</span></td>
+                                        <td><a href="#" class="btn btn-sm btn-primary">Làm bài</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bài tập ASP.NET Core</td>
+                                        <td>Lập trình Web</td>
+                                        <td>12/11/2024</td>
+                                        <td><span class="badge bg-success">Đã nộp</span></td>
+                                        <td><a href="#" class="btn btn-sm btn-info">Xem lại</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bài tập Thuật toán</td>
+                                        <td>Cấu trúc dữ liệu</td>
+                                        <td>10/11/2024</td>
+                                        <td><span class="badge bg-success">Đã nộp</span></td>
+                                        <td><a href="#" class="btn btn-sm btn-info">Xem lại</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS bổ sung -->
+<style>
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+</style>
