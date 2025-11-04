@@ -25,11 +25,11 @@ public partial class EdumanageContext : DbContext
     public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
 
-    public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
+    //public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
 
     public virtual DbSet<TblLessionContent> TblLessionContents { get; set; }
 
-    public virtual DbSet<TblLesson> TblLessons { get; set; }
+    //public virtual DbSet<TblLesson> TblLessons { get; set; }
 
     public virtual DbSet<TblRole> TblRoles { get; set; }
 
