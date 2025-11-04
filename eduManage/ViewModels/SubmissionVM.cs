@@ -1,13 +1,18 @@
-﻿namespace eduManage.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eduManage.ViewModels
 {
     public class SubmissionVM
     {
         public int SubmissionId { get; set; }
 
+        [Required(ErrorMessage = "Thiếu mã bài tập")]
         public int AssignmentId { get; set; }
 
+        [Required(ErrorMessage = "Thiếu mã học sinh")]
         public int StudentId { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng tải lên file bài nộp")]
         public string? FileUrl { get; set; }
 
         public DateTime? SubmitDate { get; set; }

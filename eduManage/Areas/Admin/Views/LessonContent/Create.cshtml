@@ -1,0 +1,77 @@
+﻿@model eduManage.ViewModels.LessonContentVM
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="mt-5">
+                        <h4 class="card-title float-left mt-2">Thêm mới bài giảng</h4>
+                        <a asp-action="Index" class="btn btn-primary float-right veiwbutton">Trở về</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form asp-action="Create" asp-area="admin" asp-controller="LessonContent" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="row formtype">
+
+                        <input type="hidden" asp-for="LessionId" value="@ViewBag.LessonId" />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Title">Tên bài giảng</label>
+                                <input class="form-control" type="text" asp-for="Title" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="ContentType">loại bài giảng</label>
+                                <select class="form-control" asp-for="ContentType">
+                                    <option value="doc">Tài liệu</option>
+                                    <option value="video">Video</option>
+                                </select>
+                                <span asp-validation-for="ContentType" class="text-danger"></span>
+                            </div>
+                        </div
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="FileUpload">File Bài giảng</label>
+                                <input class="form-control" type="file" asp-for="FileUpload" />
+                                <span asp-validation-for="FileUpload" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Duration">Thời lượng</label>
+                                <input class="form-control" type="number" asp-for="Duration" />
+                                <span asp-validation-for="Duration" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="CreateDate">Ngày tạo</label>
+                                <input class="form-control" type="date" asp-for="CreateDate" />
+                                <span asp-validation-for="CreateDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

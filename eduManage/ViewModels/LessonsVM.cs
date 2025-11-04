@@ -1,4 +1,6 @@
-﻿namespace eduManage.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eduManage.ViewModels
 {
     public class LessonsVM
     {
@@ -6,10 +8,13 @@
 
         public int ClassId { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng nhập tên bài giảng")]
         public string Title { get; set; } = null!;
 
+        [Required(ErrorMessage = "Vui lòng nhập tên mô tả bài giảng")]
         public string? Description { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng số thứ tự hiển thị")]
         public int? OrderIdx { get; set; }
 
         public DateTime? CreateDate { get; set; }

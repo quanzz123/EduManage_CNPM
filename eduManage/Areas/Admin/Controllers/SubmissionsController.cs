@@ -40,7 +40,7 @@ namespace eduManage.Areas.Admin.Controllers
             if (submission == null || string.IsNullOrEmpty(submission.FileUrl))
                 return NotFound();
 
-            // 🧩 Dòng quan trọng
+            // Dòng quan trọng
             var filePath = Path.Combine(_env.WebRootPath, submission.FileUrl.TrimStart('/'));
 
             if (!System.IO.File.Exists(filePath))
