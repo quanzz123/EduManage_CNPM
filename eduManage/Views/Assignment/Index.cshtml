@@ -2,62 +2,135 @@
 
 @{
     ViewData["Title"] = "Danh sách bài tập";
+    Layout = "_Layout";
 }
 
 <div class="container mt-4">
-    <h2 class="mb-4 text-primary fw-bold"> Danh sách bài tập được giao</h2>
+    <h2 class="mb-4 text-primary fw-bold">📚 Danh sách bài tập được giao</h2>
 
     @if (!Model.Any())
     {
-        <div class="alert alert-warning">Hiện tại bạn chưa có bài tập nào được giao.</div>
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Hiện tại bạn chưa có bài tập nào được giao.
+        </div>
     }
     else
     {
-        <table class="table table-hover table-bordered shadow-sm">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Tiêu đề</th>
-                    <th scope="col">Mô tả</th>
-                    <th scope="col">Hạn nộp</th>
-                    <th scope="col">Tệp đính kèm</th>
-                    <th scope="col">Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    int stt = 1;
-                }
-                @foreach (var item in Model)
-                {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm">
+                <thead class="table-primary">
                     <tr>
-                        <td>@(stt++)</td>
-                        <td>@item.Title</td>
-                        <td>@item.Description</td>
-                        @* <td>@item.Deadline.ToString("dd/MM/yyyy HH:mm")</td> *@
-                        @(item.Deadline.HasValue? item.Deadline.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa có hạn")
-
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.FileUrl))
-                            {
-                                <a href="@item.FileUrl" target="_blank" class="btn btn-outline-secondary btn-sm">
-                                    📎 Tải xuống
-                                </a>
-                            }
-                            else
-                            {
-                                <span class="text-muted">Không có</span>
-                            }
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
-                               class="btn btn-outline-primary btn-sm">
-                                ✏️ Nộp bài
-                            </a>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Tiêu đề</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Hạn nộp</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Tệp đính kèm</th>
+                        <th scope="col">Thao tác</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @{
+                        int stt = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(stt++)</td>
+                            <td>
+                                <strong>@item.Title</strong>
+                                @if (item.Deadline.HasValue && item.Deadline.Value < DateTime.Now)
+                                {
+                                    <span class="badge bg-danger ms-1">Quá hạn</span>
+                                }
+                                else if (item.Deadline.HasValue && item.Deadline.Value < DateTime.Now.AddDays(1))
+                                {
+                                    <span class="badge bg-warning ms-1">Sắp đến hạn</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <span class="text-truncate" style="max-width: 200px; display: inline-block;">
+                                        @item.Description
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có mô tả</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Deadline.HasValue)
+                                {
+                                    <span class="@(item.Deadline.Value < DateTime.Now ? "text-danger" : "")">
+                                        @item.Deadline.Value.ToString("dd/MM/yyyy HH:mm")
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Chưa có hạn</span>
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    // Giả sử có trạng thái nộp bài - bạn cần thêm logic thực tế
+                                    var isSubmitted = false; // Thay bằng logic thực tế từ database
+                                }
+                                @if (isSubmitted)
+                                {
+                                    <span class="badge bg-success">Đã nộp</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">Chưa nộp</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.FileUrl))
+                                {
+                                    <a href="@item.FileUrl" target="_blank" class="btn btn-outline-secondary btn-sm">
+                                        <i class="fas fa-download me-1"></i> Tải xuống
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-edit me-1"></i> Nộp bài
+                                    </a>
+                                    <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
+                                       class="btn btn-outline-info btn-sm">
+                                        <i class="fas fa-info-circle me-1"></i> Chi tiết
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>
+
+<!-- CSS bổ sung -->
+<style>
+    .table th {
+        font-weight: 600;
+    }
+
+    .badge {
+        font-size: 0.7em;
+    }
+
+    .btn-group .btn {
+        border-radius: 5px;
+        margin: 1px;
+    }
+</style>

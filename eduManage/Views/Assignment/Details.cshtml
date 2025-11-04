@@ -1,15 +1,238 @@
 ﻿@model eduManage.Models.Assignment
 
+@{
+    ViewData["Title"] = "Chi tiết bài tập";
+    Layout = "_Layout";
+}
+
 <div class="container mt-5">
-    <h2 class="text-primary">@Model.Title</h2>
-    <p><strong>Mô tả:</strong> @Model.Description</p>
-    <p><strong>Hạn nộp:</strong> @Model.Deadline?.ToString("dd/MM/yyyy HH:mm")</p>
-    @if (!string.IsNullOrEmpty(Model.FileUrl))
+    <!-- Hiển thị thông báo -->
+    @if (TempData["SuccessMessage"] != null)
     {
-        <p>
-            <strong>Tệp đính kèm:</strong>
-            <a href="@Model.FileUrl" target="_blank" class="text-success">Tải xuống</a>
-        </p>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
     }
-    <a href="@Url.Action("Index")" class="btn btn-secondary mt-3">⬅ Quay lại danh sách</a>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Thông tin bài tập -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-tasks me-2"></i>
+                        @Model.Title
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-calendar-alt me-2"></i>Hạn nộp:</strong>
+                            @if (Model.Deadline.HasValue)
+                            {
+                                <span class="@(Model.Deadline.Value < DateTime.Now ? "text-danger fw-bold" : "text-dark")">
+                                    @Model.Deadline.Value.ToString("dd/MM/yyyy HH:mm")
+                                </span>
+                                @if (Model.Deadline.Value < DateTime.Now)
+                                {
+                                    <span class="badge bg-danger ms-2">Đã quá hạn</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chưa có hạn</span>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-clock me-2"></i>Thời gian còn lại:</strong>
+                            @if (Model.Deadline.HasValue)
+                            {
+                                var timeLeft = Model.Deadline.Value - DateTime.Now;
+                                if (timeLeft.TotalSeconds > 0)
+                                {
+                                    <span class="@(timeLeft.TotalDays < 1 ? "text-warning fw-bold" : "text-success")">
+                                        @($"{timeLeft.Days} ngày {timeLeft.Hours} giờ {timeLeft.Minutes} phút")
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger fw-bold">Đã quá hạn</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">Không giới hạn</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong><i class="fas fa-align-left me-2"></i>Mô tả:</strong>
+                        <p class="mt-2">@(string.IsNullOrEmpty(Model.Description) ? "Không có mô tả" : Model.Description)</p>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.FileUrl))
+                    {
+                        <div class="mb-3">
+                            <strong><i class="fas fa-paperclip me-2"></i>Tệp đính kèm:</strong>
+                            <div class="mt-2">
+                                <a href="@Model.FileUrl" target="_blank" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-download me-1"></i> Tải xuống tài liệu
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Form nộp bài -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-upload me-2"></i>
+                        Nộp bài làm
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Deadline.HasValue && Model.Deadline.Value < DateTime.Now)
+                    {
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <strong>Đã quá hạn nộp bài!</strong> Bạn không thể nộp bài sau thời hạn.
+                        </div>
+                    }
+                    else
+                    {
+                        <form asp-action="SubmitAssignment" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="assignmentId" value="@Model.AssignmentId" />
+
+                            <div class="mb-3">
+                                <label for="submissionText" class="form-label">
+                                    <strong>Nội dung bài làm:</strong>
+                                </label>
+                                <textarea class="form-control" id="submissionText" name="submissionText"
+                                      rows="5" placeholder="Nhập nội dung bài làm của bạn..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="submissionFile" class="form-label">
+                                    <strong>Tệp đính kèm (nếu có):</strong>
+                                </label>
+                                <input type="file" class="form-control" id="submissionFile" name="submissionFile"
+                                       accept=".pdf,.doc,.docx,.zip,.rar,.txt,.jpg,.png">
+                                <div class="form-text">Chấp nhận: PDF, Word, ZIP, RAR, TXT, JPG, PNG (Tối đa 10MB)</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">
+                                    <strong>Ghi chú cho giảng viên:</strong>
+                                </label>
+                                <textarea class="form-control" id="comments" name="comments"
+                                      rows="2" placeholder="Thêm ghi chú nếu cần..."></textarea>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="@Url.Action("Index")" class="btn btn-secondary me-md-2">
+                                    <i class="fas fa-arrow-left me-1"></i> Quay lại
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-paper-plane me-1"></i> Nộp bài
+                                </button>
+                            </div>
+                        </form>
+                    }
+
+                    <!-- Thông tin bài nộp trước đó -->
+                    <div class="mt-4 pt-3 border-top">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="text-muted">
+                                <i class="fas fa-history me-2"></i>
+                                Lịch sử nộp bài
+                            </h6>
+                            <a href="@Url.Action("SubmissionHistory", new { assignmentId = Model.AssignmentId })"
+                               class="btn btn-outline-info btn-sm">
+                                <i class="fas fa-list me-1"></i> Xem tất cả
+                            </a>
+                        </div>
+
+                        <!-- Hiển thị bài nộp gần nhất -->
+                        @{
+                            // Lấy bài nộp gần nhất từ database
+                            var latestSubmission = ViewBag.LatestSubmission as eduManage.Models.Submission;
+                        }
+
+                        @if (latestSubmission == null)
+                        {
+                            <div class="alert alert-info mt-2">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Chưa có bài nộp nào. Hãy nộp bài làm của bạn ở trên.
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning mt-2">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <strong>Lần nộp gần nhất:</strong> @latestSubmission.SubmitDate?.ToString("dd/MM/yyyy HH:mm")
+                                        <br>
+                                        <strong>Trạng thái:</strong>
+                                        <span class="badge @(latestSubmission.Status == "Đã chấm" ? "bg-success" : "bg-warning")">
+                                            @latestSubmission.Status
+                                        </span>
+                                        @if (latestSubmission.Score.HasValue)
+                                        {
+                                            <br>
+                                            <strong>Điểm:</strong>
+                                            <span class="badge bg-primary">@latestSubmission.Score.Value</span>
+                                        }
+                                    </div>
+                                    @if (!string.IsNullOrEmpty(latestSubmission.FileUrl))
+                                    {
+                                        <a href="@latestSubmission.FileUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-download me-1"></i> File đã nộp
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- CSS bổ sung -->
+<style>
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .badge {
+        font-size: 0.75em;
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    }
+
+    .alert {
+        border-radius: 10px;
+    }
+</style>
