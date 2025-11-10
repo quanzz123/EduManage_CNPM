@@ -19,23 +19,27 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<Submission> Submissions { get; set; }
 
+    public virtual DbSet<TblAttendanceRecord> TblAttendanceRecords { get; set; }
+
+    public virtual DbSet<TblAttendanceSession> TblAttendanceSessions { get; set; }
+
+    public virtual DbSet<TblAttendanceStatus> TblAttendanceStatuses { get; set; }
+
     public virtual DbSet<TblClass> TblClasses { get; set; }
-    public virtual DbSet<TblLesson> TblLessons { get; set; }              
-    public virtual DbSet<TblLessionContent> TblLessonContents { get; set; }  
-    public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
+
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
 
-    //public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
+    public virtual DbSet<TblLearningProgress> TblLearningProgresses { get; set; }
 
     public virtual DbSet<TblLessionContent> TblLessionContents { get; set; }
 
-    //public virtual DbSet<TblLesson> TblLessons { get; set; }
+    public virtual DbSet<TblLesson> TblLessons { get; set; }
 
     public virtual DbSet<TblRole> TblRoles { get; set; }
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-   
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -68,6 +72,50 @@ public partial class EdumanageContext : DbContext
                 .HasForeignKey(d => d.AssignmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Submissions_tblUsers");
+        });
+
+        modelBuilder.Entity<TblAttendanceRecord>(entity =>
+        {
+            entity.HasKey(e => e.RecordId);
+
+            entity.ToTable("tblAttendanceRecords");
+
+            entity.Property(e => e.Note).HasMaxLength(250);
+            entity.Property(e => e.RecordedAt).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Session).WithMany(p => p.TblAttendanceRecords)
+                .HasForeignKey(d => d.SessionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblAttendanceSessions");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.TblAttendanceRecords)
+                .HasForeignKey(d => d.StatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblAttendanceStatus");
+        });
+
+        modelBuilder.Entity<TblAttendanceSession>(entity =>
+        {
+            entity.HasKey(e => e.SessionsId);
+
+            entity.ToTable("tblAttendanceSessions");
+
+            entity.Property(e => e.SessionDate).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Class).WithMany(p => p.TblAttendanceSessions)
+                .HasForeignKey(d => d.ClassId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceSessions_tblClasses");
+        });
+
+        modelBuilder.Entity<TblAttendanceStatus>(entity =>
+        {
+            entity.HasKey(e => e.StatusId);
+
+            entity.ToTable("tblAttendanceStatus");
+
+            entity.Property(e => e.Description).HasMaxLength(250);
+            entity.Property(e => e.Title).HasMaxLength(250);
         });
 
         modelBuilder.Entity<TblClass>(entity =>

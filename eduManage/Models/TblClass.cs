@@ -33,6 +33,8 @@ public partial class TblClass
 
     public virtual ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
 
+    public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
+
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     public virtual ICollection<TblLesson> TblLessons { get; set; } = new List<TblLesson>();
