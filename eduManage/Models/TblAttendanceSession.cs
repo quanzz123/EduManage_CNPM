@@ -6,36 +6,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eduManage.Models;
 
-[Table("tblClassMembers")]
-public partial class TblClassMember
+[Table("tblAttendanceSessions")]
+public partial class TblAttendanceSession
 {
     [Key]
-    [Column("MemberID")]
-    public int MemberId { get; set; }
+    public int SessionsId { get; set; }
 
-    [Column("ClassID")]
     public int ClassId { get; set; }
 
     [Column(TypeName = "datetime")]
-    public DateTime? JoinDate { get; set; }
+    public DateTime? SessionDate { get; set; }
 
-    [StringLength(50)]
-    public string? Status { get; set; }
-
-    public double? Progress { get; set; }
-
-    public double? FinalScore { get; set; }
-
-    public string? Note { get; set; }
-
-    [Column("UserID")]
     public int? UserId { get; set; }
 
     [ForeignKey("ClassId")]
-    [InverseProperty("TblClassMembers")]
+    [InverseProperty("TblAttendanceSessions")]
     public virtual TblClass Class { get; set; } = null!;
 
+    [InverseProperty("Session")]
+    public virtual ICollection<TblAttendanceRecord> TblAttendanceRecords { get; set; } = new List<TblAttendanceRecord>();
+
     [ForeignKey("UserId")]
-    [InverseProperty("TblClassMembers")]
+    [InverseProperty("TblAttendanceSessions")]
     public virtual TblUser? User { get; set; }
 }

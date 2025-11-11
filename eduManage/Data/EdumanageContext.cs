@@ -20,6 +20,12 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<Submission> Submissions { get; set; }
 
+    public virtual DbSet<TblAttendanceRecord> TblAttendanceRecords { get; set; }
+
+    public virtual DbSet<TblAttendanceSession> TblAttendanceSessions { get; set; }
+
+    public virtual DbSet<TblAttendanceStatus> TblAttendanceStatuses { get; set; }
+
     public virtual DbSet<TblClass> TblClasses { get; set; }
 
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
@@ -55,6 +61,30 @@ public partial class EdumanageContext : DbContext
                 .HasConstraintName("FK_Submissions_tblUsers");
         });
 
+        modelBuilder.Entity<TblAttendanceRecord>(entity =>
+        {
+            entity.HasOne(d => d.Session).WithMany(p => p.TblAttendanceRecords)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblAttendanceSessions");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.TblAttendanceRecords)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblAttendanceStatus");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblAttendanceRecords)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblUsers");
+        });
+
+        modelBuilder.Entity<TblAttendanceSession>(entity =>
+        {
+            entity.HasOne(d => d.Class).WithMany(p => p.TblAttendanceSessions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceSessions_tblClasses");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblAttendanceSessions).HasConstraintName("FK_tblAttendanceSessions_tblUsers");
+        });
+
         modelBuilder.Entity<TblClass>(entity =>
         {
             entity.HasOne(d => d.Teacher).WithMany(p => p.TblClasses)
@@ -76,6 +106,10 @@ public partial class EdumanageContext : DbContext
             entity.HasOne(d => d.LastContent).WithMany(p => p.TblLearningProgresses)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblLearningProgress_tblLessionContent");
+
+            entity.HasOne(d => d.Lesson).WithMany(p => p.TblLearningProgresses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblLearningProgress_tblLessons");
 
             entity.HasOne(d => d.User).WithMany(p => p.TblLearningProgresses)
                 .OnDelete(DeleteBehavior.ClientSetNull)
