@@ -1,97 +1,66 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using eduManage.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
 
 namespace eduManage.Controllers
 {
-    public class StudentController : Controller
+    public class LoginController : Controller
     {
         private readonly EdumanageContext _context;
 
-        public StudentController(EdumanageContext context)
+        public LoginController(EdumanageContext context)
         {
             _context = context;
         }
 
-        // 🏠 Trang tổng quan sinh viên
-        public IActionResult Dashboard()
+        [HttpGet]
+        public IActionResult Login()
         {
-            var studentName = HttpContext.Session.GetString("StudentName");
+            // Nếu đã đăng nhập, chuyển hướng đến dashboard
             var studentId = HttpContext.Session.GetInt32("StudentId");
-            if (studentId == null)
-                return RedirectToAction("Login", "Login");
+            if (studentId != null)
+                return RedirectToAction("Dashboard", "Student");
 
-            // Lấy các lớp học mà sinh viên này đang tham gia
-            var classes = (from m in _context.TblClassMembers
-                           join c in _context.TblClasses on m.ClassId equals c.ClassId
-                           where m.UserId == studentId && c.IsActive == true
-                           select c).ToList();
+            // 🔹 Đăng nhập tự động cho student1@edu.vn
+            var autoStudent = _context.TblUsers
+                .FirstOrDefault(u => u.Email == "student1@edu.vn" && u.PassworkHash == "123456" && u.RoleId == 3);
 
-            ViewBag.StudentName = studentName;
-            return View(classes);
+            if (autoStudent != null)
+            {
+                HttpContext.Session.SetInt32("StudentId", autoStudent.UserId);
+                HttpContext.Session.SetString("StudentName", autoStudent.FullName);
+                HttpContext.Session.SetString("StudentEmail", autoStudent.Email);
+
+                return RedirectToAction("Dashboard", "Student");
+            }
+
+            return View();
         }
 
-        // 📘 Danh sách bài học trong lớp
-        public IActionResult Lessons(int classId)
-        {
-            var studentId = HttpContext.Session.GetInt32("StudentId");
-            if (studentId == null)
-                return RedirectToAction("Login", "Login");
-
-            var lessons = _context.TblLessons
-                .Where(l => l.ClassId == classId && l.IsActive == true)
-                .OrderBy(l => l.OrderIdx)
-                .ToList();
-
-            ViewBag.ClassInfo = _context.TblClasses.FirstOrDefault(c => c.ClassId == classId);
-            return View(lessons);
-        }
-
-        // ▶️ Xem nội dung bài học (video / tài liệu)
-        public IActionResult LessonContent(int lessonId)
-        {
-            var contents = _context.TblLessonContents
-                .Where(c => c.LessionId == lessonId)
-                .OrderBy(c => c.OrderIdx)
-                .ToList();
-
-            ViewBag.Lesson = _context.TblLessons.FirstOrDefault(l => l.LessonId == lessonId);
-            return View(contents);
-        }
-
-        // 📊 Cập nhật tiến độ học
         [HttpPost]
-        public IActionResult UpdateProgress(int lessonId, decimal completionRate)
+        public IActionResult Login(string email, string password)
         {
-            var studentId = HttpContext.Session.GetInt32("StudentId");
-            if (studentId == null)
-                return Json(new { success = false });
+            var student = _context.TblUsers
+                .FirstOrDefault(u => u.Email == email && u.PassworkHash == password && u.RoleId == 3);
 
-            var progress = _context.TblLearningProgresses
-                .FirstOrDefault(p => p.UserId == studentId && p.LessonId == lessonId);
+            if (student != null)
+            {
+                HttpContext.Session.SetInt32("StudentId", student.UserId);
+                HttpContext.Session.SetString("StudentName", student.FullName);
+                HttpContext.Session.SetString("StudentEmail", student.Email);
 
-            if (progress == null)
-            {
-                progress = new TblLearningProgress
-                {
-                    UserId = studentId.Value,
-                    LessonId = lessonId,
-                    CompletionRate = completionRate,
-                    IsCompleted = completionRate >= 100,
-                    UpdatedDate = DateTime.Now
-                };
-                _context.TblLearningProgresses.Add(progress);
-            }
-            else
-            {
-                progress.CompletionRate = completionRate;
-                progress.IsCompleted = completionRate >= 100;
-                progress.UpdatedDate = DateTime.Now;
+                return RedirectToAction("Dashboard", "Student");
             }
 
-            _context.SaveChanges();
-            return Json(new { success = true });
+            ViewBag.Error = "Email hoặc mật khẩu không đúng.";
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Login");
         }
     }
 }
