@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Trang sinh viên";
     Layout = "_Layout";
     var studentName = Context.Session.GetString("StudentName");
@@ -177,7 +177,10 @@
         </div>
     </div>
 </div>
-
+<div class="mt-4 text-end">
+    <a href="@Url.Action("Dashboard", "Student")" class="btn btn-outline-secondary">
+        ⬅️ Quay lại trang tổng quan
+    </a>
 <!-- CSS bổ sung -->
 <style>
     .card {
