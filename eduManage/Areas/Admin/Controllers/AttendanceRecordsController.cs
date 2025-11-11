@@ -32,7 +32,7 @@ namespace eduManage.Areas.Admin.Controllers
             {
                 ClassId = id,
                 SessionDate = DateTime.Now,
-                UserId = 3 // Giả sử user hiện tại có ID là 3
+                UserId = 3 // id test cho giao viên bằng 3
             };
             _context.TblAttendanceSessions.Add(newSession);
             _context.SaveChanges();
