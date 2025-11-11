@@ -16,4 +16,6 @@ public partial class TblAttendanceSession
     public virtual TblClass Class { get; set; } = null!;
 
     public virtual ICollection<TblAttendanceRecord> TblAttendanceRecords { get; set; } = new List<TblAttendanceRecord>();
+
+    public virtual TblUser? User { get; set; }
 }

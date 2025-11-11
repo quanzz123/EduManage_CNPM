@@ -39,7 +39,7 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-    
+ 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,6 +92,11 @@ public partial class EdumanageContext : DbContext
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblAttendanceRecords_tblAttendanceStatus");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblAttendanceRecords)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAttendanceRecords_tblUsers");
         });
 
         modelBuilder.Entity<TblAttendanceSession>(entity =>
@@ -106,6 +111,10 @@ public partial class EdumanageContext : DbContext
                 .HasForeignKey(d => d.ClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tblAttendanceSessions_tblClasses");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblAttendanceSessions)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_tblAttendanceSessions_tblUsers");
         });
 
         modelBuilder.Entity<TblAttendanceStatus>(entity =>

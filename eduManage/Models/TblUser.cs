@@ -29,6 +29,10 @@ public partial class TblUser
 
     public virtual ICollection<Submission> Submissions { get; set; } = new List<Submission>();
 
+    public virtual ICollection<TblAttendanceRecord> TblAttendanceRecords { get; set; } = new List<TblAttendanceRecord>();
+
+    public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
+
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     public virtual ICollection<TblClass> TblClasses { get; set; } = new List<TblClass>();

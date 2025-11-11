@@ -20,4 +20,6 @@ public partial class TblAttendanceRecord
     public virtual TblAttendanceSession Session { get; set; } = null!;
 
     public virtual TblAttendanceStatus Status { get; set; } = null!;
+
+    public virtual TblUser User { get; set; } = null!;
 }

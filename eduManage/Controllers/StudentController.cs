@@ -51,7 +51,7 @@ namespace eduManage.Controllers
         // ▶️ Xem nội dung bài học (video / tài liệu)
         public IActionResult LessonContent(int lessonId)
         {
-            var contents = _context.TblLessonContents
+            var contents = _context.TblLessionContents
                 .Where(c => c.LessionId == lessonId)
                 .OrderBy(c => c.OrderIdx)
                 .ToList();
