@@ -1,29 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace eduManage.Models;
-
-public partial class TblLesson
+namespace eduManage.Models
 {
-    public int LessonId { get; set; }
+    [Table("tblLessons")]
+    public partial class TblLesson
+    {
+        [Key]
+        public int LessonId { get; set; }
 
-    public int ClassId { get; set; }
+        public int ClassId { get; set; }
 
-    public string Title { get; set; } = null!;
+        [StringLength(250)]
+        public string Title { get; set; } = null!;
 
-    public string? Description { get; set; }
+        [StringLength(250)]
+        public string? Description { get; set; }
 
-    public int? OrderIdx { get; set; }
+        public int? OrderIdx { get; set; }
 
-    public DateTime? CreateDate { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? CreateDate { get; set; }
 
-    public int? CreateBy { get; set; }
+        public int? CreateBy { get; set; }
 
-    public bool? IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
-    public virtual TblClass Class { get; set; } = null!;
+        [ForeignKey("ClassId")]
+        [InverseProperty("TblLessons")]
+        public virtual TblClass Class { get; set; } = null!;
 
-    public virtual ICollection<TblLearningProgress> TblLearningProgresses { get; set; } = new List<TblLearningProgress>();
+        [InverseProperty("Lesson")]
+        public virtual ICollection<TblLearningProgress> TblLearningProgresses { get; set; } = new List<TblLearningProgress>();
 
-    public virtual ICollection<TblLessionContent> TblLessionContents { get; set; } = new List<TblLessionContent>();
+        [InverseProperty("Lession")]
+        public virtual ICollection<TblLessionContent> TblLessionContents { get; set; } = new List<TblLessionContent>();
+    }
 }

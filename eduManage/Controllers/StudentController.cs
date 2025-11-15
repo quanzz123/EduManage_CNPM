@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eduManage.Models;
 using Microsoft.AspNetCore.Http;
-using eduManage.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace eduManage.Controllers
@@ -14,7 +15,7 @@ namespace eduManage.Controllers
             _context = context;
         }
 
-        // 🏠 Trang tổng quan sinh viên
+        // Trang tổng quan sinh viên
         public IActionResult Dashboard()
         {
             var studentName = HttpContext.Session.GetString("StudentName");
@@ -22,76 +23,72 @@ namespace eduManage.Controllers
             if (studentId == null)
                 return RedirectToAction("Login", "Login");
 
-            // Lấy các lớp học mà sinh viên này đang tham gia
-            var classes = (from m in _context.TblClassMembers
-                           join c in _context.TblClasses on m.ClassId equals c.ClassId
-                           where m.UserId == studentId && c.IsActive == true
-                           select c).ToList();
+            // Lấy danh sách lớp active của sinh viên
+            var classes = _context.TblClassMembers
+                .Where(m => m.UserId == studentId)
+                .Join(_context.TblClasses,
+                      m => m.ClassId,
+                      c => c.ClassId,
+                      (m, c) => c)
+                .AsEnumerable()  // chuyển sang client để filter bool?
+                .Where(c => c.IsActive.GetValueOrDefault())
+                .ToList();
 
             ViewBag.StudentName = studentName;
+            ViewBag.StudentId = studentId;
+
             return View(classes);
         }
 
-        // 📘 Danh sách bài học trong lớp
+        // Danh sách bài học trong lớp
         public IActionResult Lessons(int classId)
         {
             var studentId = HttpContext.Session.GetInt32("StudentId");
             if (studentId == null)
                 return RedirectToAction("Login", "Login");
 
+            // Lấy tất cả lessons của lớp
             var lessons = _context.TblLessons
-                .Where(l => l.ClassId == classId && l.IsActive == true)
+                .Include(l => l.TblLessionContents)
+                .Include(l => l.TblLearningProgresses)
+                .Where(l => l.ClassId == classId)
+                .AsEnumerable()  // chuyển sang client
+                .Where(l => l.IsActive.GetValueOrDefault())  // filter nullable bool
                 .OrderBy(l => l.OrderIdx)
                 .ToList();
 
-            ViewBag.ClassInfo = _context.TblClasses.FirstOrDefault(c => c.ClassId == classId);
+            var classInfo = _context.TblClasses.FirstOrDefault(c => c.ClassId == classId);
+
+            ViewBag.ClassInfo = classInfo;
+            ViewBag.StudentId = studentId;
+
             return View(lessons);
         }
 
-        // ▶️ Xem nội dung bài học (video / tài liệu)
+        // Xem nội dung bài học
         public IActionResult LessonContent(int lessonId)
         {
+<<<<<<< HEAD
+=======
+            var studentId = HttpContext.Session.GetInt32("StudentId");
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+>>>>>>> 094386d1a1a01a0e43ad1b03c56e72832ca52cdc
             var contents = _context.TblLessionContents
                 .Where(c => c.LessionId == lessonId)
                 .OrderBy(c => c.OrderIdx)
                 .ToList();
 
-            ViewBag.Lesson = _context.TblLessons.FirstOrDefault(l => l.LessonId == lessonId);
-            return View(contents);
-        }
-
-        // 📊 Cập nhật tiến độ học
-        [HttpPost]
-        public IActionResult UpdateProgress(int lessonId, decimal completionRate)
-        {
-            var studentId = HttpContext.Session.GetInt32("StudentId");
-            if (studentId == null)
-                return Json(new { success = false });
+            var lesson = _context.TblLessons.FirstOrDefault(l => l.LessonId == lessonId);
 
             var progress = _context.TblLearningProgresses
                 .FirstOrDefault(p => p.UserId == studentId && p.LessonId == lessonId);
 
-            if (progress == null)
-            {
-                progress = new TblLearningProgress
-                {
-                    UserId = studentId.Value,
-                    LessonId = lessonId,
-                    CompletionRate = completionRate,
-                    IsCompleted = completionRate >= 100,
-                    UpdatedDate = DateTime.Now
-                };
-                _context.TblLearningProgresses.Add(progress);
-            }
-            else
-            {
-                progress.CompletionRate = completionRate;
-                progress.IsCompleted = completionRate >= 100;
-                progress.UpdatedDate = DateTime.Now;
-            }
+            ViewBag.Lesson = lesson;
+            ViewBag.Progress = progress;
 
-            _context.SaveChanges();
-            return Json(new { success = true });
+            return View(contents);
         }
     }
 }
