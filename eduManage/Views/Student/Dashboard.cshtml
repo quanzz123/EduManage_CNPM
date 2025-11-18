@@ -1,7 +1,10 @@
-﻿@{
+﻿@model List<eduManage.Models.TblClass>
+
+@{
     ViewData["Title"] = "Trang sinh viên";
     Layout = "_Layout";
     var studentName = Context.Session.GetString("StudentName");
+    var studentId = Context.Session.GetInt32("StudentId");
 }
 
 <div class="container-fluid py-5">
@@ -16,6 +19,14 @@
             </div>
         </div>
 
+        <!-- Hiển thị lỗi nếu có -->
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+
         <!-- Quick Actions -->
         <div class="row mb-5">
             <div class="col-12">
@@ -23,7 +34,7 @@
                 <div class="row g-4">
                     <div class="col-md-3">
                         <a class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
-                           asp-controller="Student" asp-action="Classes">
+                           href="#classes-section">
                             <i class="fas fa-book fa-3x mb-3"></i>
                             <span>Lớp học của tôi</span>
                         </a>
@@ -37,7 +48,7 @@
                     </div>
                     <div class="col-md-3">
                         <a class="btn btn-info btn-lg w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4"
-                           asp-controller="Student" asp-action="Lessons">
+                           href="#classes-section">
                             <i class="fas fa-play-circle fa-3x mb-3"></i>
                             <span>Bài học</span>
                         </a>
@@ -53,37 +64,112 @@
             </div>
         </div>
 
-        <!-- Recent Activities & Stats -->
-        <div class="row">
-            <!-- Thống kê học tập -->
-            <div class="col-lg-8 mb-4">
+        <!-- Lớp học của tôi -->
+        <div class="row mb-5" id="classes-section">
+            <div class="col-12">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-book me-2"></i>Lớp học của tôi</h4>
+                    </div>
+                    <div class="card-body">
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            <div class="row">
+                                @foreach (var classItem in Model)
+                                {
+                                    <div class="col-md-6 col-lg-4 mb-4">
+                                        <div class="card h-100 border-primary">
+                                            <div class="card-header bg-light">
+                                                <h5 class="card-title mb-0 text-primary">@classItem.ClassName</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">@classItem.Description</p>
+                                                <p class="card-text">
+                                                    <small class="text-muted">
+                                                        <strong>Môn:</strong> @classItem.Subject<br>
+                                                        <strong>Lịch học:</strong> @classItem.Schedule<br>
+                                                        <strong>Giáo viên:</strong>
+                                                        @{
+                                                            var teacher = ViewBag.Teachers as Dictionary<int, string>;
+                                                            if (teacher != null && teacher.ContainsKey(classItem.TeacherId))
+                                                            {
+                                                                @teacher[classItem.TeacherId]
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>Chưa xác định</text>
+                                                            }
+                                                        }
+                                                    </small>
+                                                </p>
+                                            </div>
+                                            <div class="card-footer bg-transparent">
+                                                <div class="d-grid gap-2">
+                                                    <!-- QUAN TRỌNG: Truyền đúng classId -->
+                                                    <a href="@Url.Action("Lessons", "Student", new { classId = classItem.ClassId })"
+                                                       class="btn btn-primary">
+                                                        <i class="fas fa-play-circle me-2"></i>Vào học
+                                                    </a>
+                                                    <a href="#" class="btn btn-outline-secondary">
+                                                        <i class="fas fa-info-circle me-2"></i>Chi tiết
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center py-4">
+                                <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">Bạn chưa tham gia lớp học nào</h5>
+                                <p class="text-muted">Hãy liên hệ với quản trị viên để được thêm vào lớp học.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thống kê học tập -->
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-info text-white">
                         <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Thống kê học tập</h4>
                     </div>
                     <div class="card-body">
                         <div class="row text-center">
                             <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3">
-                                    <h3 class="text-primary">5</h3>
+                                <div class="border rounded p-3 bg-light">
+                                    <h3 class="text-primary">@Model?.Count</h3>
                                     <p class="mb-0">Lớp học</p>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3">
-                                    <h3 class="text-success">12</h3>
+                                <div class="border rounded p-3 bg-light">
+                                    <h3 class="text-success">
+                                        @{
+                                            var totalLessons = Model?.Sum(c =>
+                                            ViewBag.LessonCounts != null && ViewBag.LessonCounts.ContainsKey(c.ClassId)
+                                            ? ViewBag.LessonCounts[c.ClassId] : 0);
+                                        }
+                                        @totalLessons
+                                    </h3>
                                     <p class="mb-0">Bài học</p>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3">
-                                    <h3 class="text-warning">8</h3>
+                                <div class="border rounded p-3 bg-light">
+                                    <h3 class="text-warning">0</h3>
                                     <p class="mb-0">Bài tập</p>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3">
-                                    <h3 class="text-info">85%</h3>
+                                <div class="border rounded p-3 bg-light">
+                                    <h3 class="text-info">0%</h3>
                                     <p class="mb-0">Tiến độ</p>
                                 </div>
                             </div>
@@ -93,83 +179,30 @@
             </div>
 
             <!-- Thông báo mới -->
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-4">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-success text-white">
                         <h4 class="mb-0"><i class="fas fa-bell me-2"></i>Thông báo mới</h4>
                     </div>
                     <div class="card-body">
                         <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <div class="list-group-item">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1">Bài tập mới</h6>
-                                    <small>2 giờ trước</small>
+                                    <h6 class="mb-1">Chào mừng</h6>
+                                    <small>Hôm nay</small>
                                 </div>
-                                <p class="mb-1">Bài tập Toán học chương 3 đã được đăng</p>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1">Lớp học mới</h6>
-                                    <small>1 ngày trước</small>
+                                <p class="mb-1">Chào mừng bạn đến với hệ thống EduManage</p>
+                            </div>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Lớp học mới</h6>
+                                        <small>Hôm nay</small>
+                                    </div>
+                                    <p class="mb-1">Bạn có @Model.Count lớp học đang tham gia</p>
                                 </div>
-                                <p class="mb-1">Bạn đã được thêm vào lớp Lập trình .NET</p>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1">Deadline sắp tới</h6>
-                                    <small>2 ngày trước</small>
-                                </div>
-                                <p class="mb-1">Bài tập Cơ sở dữ liệu hết hạn trong 3 ngày</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bài tập gần đây -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-warning text-dark">
-                        <h4 class="mb-0"><i class="fas fa-tasks me-2"></i>Bài tập gần đây</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Bài tập</th>
-                                        <th>Môn học</th>
-                                        <th>Hạn nộp</th>
-                                        <th>Trạng thái</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Bài tập SQL nâng cao</td>
-                                        <td>Cơ sở dữ liệu</td>
-                                        <td>15/11/2024</td>
-                                        <td><span class="badge bg-warning">Chưa nộp</span></td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">Làm bài</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bài tập ASP.NET Core</td>
-                                        <td>Lập trình Web</td>
-                                        <td>12/11/2024</td>
-                                        <td><span class="badge bg-success">Đã nộp</span></td>
-                                        <td><a href="#" class="btn btn-sm btn-info">Xem lại</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bài tập Thuật toán</td>
-                                        <td>Cấu trúc dữ liệu</td>
-                                        <td>10/11/2024</td>
-                                        <td><span class="badge bg-success">Đã nộp</span></td>
-                                        <td><a href="#" class="btn btn-sm btn-info">Xem lại</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            }
                         </div>
                     </div>
                 </div>
@@ -206,4 +239,8 @@
         .list-group-item:last-child {
             border-bottom: none;
         }
+
+    .border-primary {
+        border: 2px solid #007bff !important;
+    }
 </style>

@@ -39,7 +39,7 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
- 
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -219,6 +219,7 @@ public partial class EdumanageContext : DbContext
             entity.HasKey(e => e.LessonId);
 
             entity.ToTable("tblLessons");
+            entity.Property(e => e.OrderIdx);
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(250);
