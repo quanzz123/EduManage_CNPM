@@ -5,29 +5,13 @@
     Layout = "_Layout";
 }
 
-<div class="container-fluid py-4">
-    <div class="container">
-        <!-- Header -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h1 class="display-5 text-primary">
-                            <i class="fas fa-history me-3"></i>Lịch sử nộp bài
-                        </h1>
-                        <p class="lead text-muted">Xem lại tất cả các lần nộp bài của bạn</p>
-                    </div>
-                    <div>
-                        <a href="@Url.Action("Details", new { id = ViewBag.AssignmentId })" class="btn btn-outline-primary me-2">
-                            <i class="fas fa-arrow-left me-1"></i> Quay lại bài tập
-                        </a>
-                        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
-                            <i class="fas fa-tasks me-1"></i> Danh sách bài tập
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">Lịch sử nộp bài</h2>
+        <a href="@Url.Action("Details", new { id = ViewBag.AssignmentId })" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại bài tập
+        </a>
+    </div>
 
         <!-- Danh sách lịch sử -->
         <div class="row">

@@ -25,195 +25,115 @@
             </div>
         </div>
 
-        <!-- Thống kê -->
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card bg-primary text-white">
-                    <div class="card-body text-center">
-                        <h4 class="card-title">@Model.Count()</h4>
-                        <p class="card-text">Tổng bài tập</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-success text-white">
-                    <div class="card-body text-center">
-                        <h4 class="card-title">@submissions.Count(s => s.Status == "Đã nộp")</h4>
-                        <p class="card-text">Đã nộp</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-warning text-white">
-                    <div class="card-body text-center">
-                        <h4 class="card-title">@Model.Count(a => a.Deadline.HasValue && a.Deadline.Value < DateTime.Now.AddDays(1) && a.Deadline.Value > DateTime.Now)</h4>
-                        <p class="card-text">Sắp đến hạn</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-danger text-white">
-                    <div class="card-body text-center">
-                        <h4 class="card-title">@Model.Count(a => a.Deadline.HasValue && a.Deadline.Value < DateTime.Now)</h4>
-                        <p class="card-text">Quá hạn</p>
-                    </div>
-                </div>
-            </div>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Hiện tại bạn chưa có bài tập nào được giao.
         </div>
-
-        <!-- Hiển thị thông báo -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                <i class="fas fa-check-circle me-2"></i>
-                @TempData["SuccessMessage"]
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                <i class="fas fa-exclamation-circle me-2"></i>
-                @TempData["ErrorMessage"]
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-
-        <!-- Danh sách bài tập -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">
-                            <i class="fas fa-list me-2"></i>Tất cả bài tập
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        @if (!Model.Any())
-                        {
-                            <div class="text-center py-5">
-                                <i class="fas fa-tasks fa-4x text-muted mb-3"></i>
-                                <h4 class="text-muted">Chưa có bài tập nào</h4>
-                                <p class="text-muted">Các bài tập sẽ được hiển thị ở đây khi được giao.</p>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="table-primary">
-                                        <tr>
-                                            <th width="5%">#</th>
-                                            <th width="25%">Bài tập</th>
-                                            <th width="15%">Lớp học</th>
-                                            <th width="15%">Hạn nộp</th>
-                                            <th width="15%">Trạng thái</th>
-                                            <th width="25%">Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @{
-                                            int stt = 1;
-                                        }
-                                        @foreach (var item in Model)
-                                        {
-                                            var submission = submissions.FirstOrDefault(s => s.AssignmentId == item.AssignmentId);
-                                            var isOverdue = item.Deadline.HasValue && item.Deadline.Value < DateTime.Now;
-                                            var isDueSoon = item.Deadline.HasValue && item.Deadline.Value < DateTime.Now.AddDays(1) && item.Deadline.Value > DateTime.Now;
-
-                                            <tr>
-                                                <td>@(stt++)</td>
-                                                <td>
-                                                    <strong class="d-block">@item.Title</strong>
-                                                    <small class="text-muted description-preview">
-                                                        @if (!string.IsNullOrEmpty(item.Description))
-                                                        {
-                                                            @Html.Raw(System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", string.Empty))
-                                                        }
-                                                        else
-                                                        {
-                                                            <text>Không có mô tả</text>
-                                                        }
-                                                    </small>
-                                                </td>
-                                                <td>@item.Class?.ClassName</td>
-                                                <td>
-                                                    @if (item.Deadline.HasValue)
-                                                    {
-                                                        <div class="@(isOverdue ? "text-danger" : isDueSoon ? "text-warning" : "text-success")">
-                                                            <i class="fas fa-clock me-1"></i>
-                                                            @item.Deadline.Value.ToString("dd/MM/yyyy HH:mm")
-                                                        </div>
-                                                        @if (isOverdue)
-                                                        {
-                                                            <small class="text-danger">Đã quá hạn</small>
-                                                        }
-                                                        else if (isDueSoon)
-                                                        {
-                                                            <small class="text-warning">Sắp đến hạn</small>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="text-muted">Không hạn</span>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @if (submission != null)
-                                                    {
-                                                        <span class="badge bg-success">
-                                                            <i class="fas fa-check me-1"></i>Đã nộp
-                                                        </span>
-                                                        <br>
-                                                        <small class="text-muted">@submission.SubmitDate?.ToString("dd/MM HH:mm")</small>
-                                                    }
-                                                    else if (isOverdue)
-                                                    {
-                                                        <span class="badge bg-danger">
-                                                            <i class="fas fa-times me-1"></i>Chưa nộp
-                                                        </span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="badge bg-warning">
-                                                            <i class="fas fa-clock me-1"></i>Chưa nộp
-                                                        </span>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group btn-group-sm" role="group">
-                                                        <a href="@Url.Action("Details", new { id = item.AssignmentId })"
-                                                           class="btn btn-outline-primary">
-                                                            <i class="fas fa-eye me-1"></i>Chi tiết
-                                                        </a>
-                                                        @if (!isOverdue)
-                                                        {
-                                                            <a href="@Url.Action("Details", new { id = item.AssignmentId })"
-                                                               class="btn btn-outline-success">
-                                                                <i class="fas fa-upload me-1"></i>Nộp bài
-                                                            </a>
-                                                        }
-                                                        @if (submission != null)
-                                                        {
-                                                            <a href="@Url.Action("SubmissionHistory", new { assignmentId = item.AssignmentId })"
-                                                               class="btn btn-outline-info">
-                                                                <i class="fas fa-history me-1"></i>Lịch sử
-                                                            </a>
-                                                        }
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tiêu đề</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Hạn nộp</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Tệp đính kèm</th>
+                        <th scope="col">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int stt = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(stt++)</td>
+                            <td>
+                                <strong>@item.Title</strong>
+                                @if (item.Deadline.HasValue && item.Deadline.Value < DateTime.Now)
+                                {
+                                    <span class="badge bg-danger ms-1">Quá hạn</span>
+                                }
+                                else if (item.Deadline.HasValue && item.Deadline.Value < DateTime.Now.AddDays(1))
+                                {
+                                    <span class="badge bg-warning ms-1">Sắp đến hạn</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <span class="text-truncate" style="max-width: 200px; display: inline-block;">
+                                        @item.Description
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có mô tả</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Deadline.HasValue)
+                                {
+                                    <span class="@(item.Deadline.Value < DateTime.Now ? "text-danger" : "")">
+                                        @item.Deadline.Value.ToString("dd/MM/yyyy HH:mm")
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Chưa có hạn</span>
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    // Giả sử có trạng thái nộp bài - bạn cần thêm logic thực tế
+                                    var isSubmitted = false; // Thay bằng logic thực tế từ database
+                                }
+                                @if (isSubmitted)
+                                {
+                                    <span class="badge bg-success">Đã nộp</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">Chưa nộp</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.FileUrl))
+                                {
+                                    <a href="@item.FileUrl" target="_blank" class="btn btn-outline-secondary btn-sm">
+                                        <i class="fas fa-download me-1"></i> Tải xuống
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-edit me-1"></i> Nộp bài
+                                    </a>
+                                    <a href="@Url.Action("Details", "Assignment", new { id = item.AssignmentId })"
+                                       class="btn btn-outline-info btn-sm">
+                                        <i class="fas fa-info-circle me-1"></i> Chi tiết
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    </div>
+    }
 </div>
 
 <style>

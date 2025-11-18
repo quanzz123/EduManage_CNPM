@@ -64,77 +64,10 @@
             </div>
         </div>
 
-        <!-- Lớp học của tôi -->
-        <div class="row mb-5" id="classes-section">
-            <div class="col-12">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-book me-2"></i>Lớp học của tôi</h4>
-                    </div>
-                    <div class="card-body">
-                        @if (Model != null && Model.Count > 0)
-                        {
-                            <div class="row">
-                                @foreach (var classItem in Model)
-                                {
-                                    <div class="col-md-6 col-lg-4 mb-4">
-                                        <div class="card h-100 border-primary">
-                                            <div class="card-header bg-light">
-                                                <h5 class="card-title mb-0 text-primary">@classItem.ClassName</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <p class="card-text">@classItem.Description</p>
-                                                <p class="card-text">
-                                                    <small class="text-muted">
-                                                        <strong>Môn:</strong> @classItem.Subject<br>
-                                                        <strong>Lịch học:</strong> @classItem.Schedule<br>
-                                                        <strong>Giáo viên:</strong>
-                                                        @{
-                                                            var teacher = ViewBag.Teachers as Dictionary<int, string>;
-                                                            if (teacher != null && teacher.ContainsKey(classItem.TeacherId))
-                                                            {
-                                                                @teacher[classItem.TeacherId]
-                                                            }
-                                                            else
-                                                            {
-                                                                <text>Chưa xác định</text>
-                                                            }
-                                                        }
-                                                    </small>
-                                                </p>
-                                            </div>
-                                            <div class="card-footer bg-transparent">
-                                                <div class="d-grid gap-2">
-                                                    <a href="@Url.Action("Lessons", "Student", new { classId = classItem.ClassId })"
-                                                       class="btn btn-primary">
-                                                        <i class="fas fa-play-circle me-2"></i>Vào học
-                                                    </a>
-                                                    <a href="#" class="btn btn-outline-secondary">
-                                                        <i class="fas fa-info-circle me-2"></i>Chi tiết
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="text-center py-4">
-                                <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
-                                <h5 class="text-muted">Bạn chưa tham gia lớp học nào</h5>
-                                <p class="text-muted">Hãy liên hệ với quản trị viên để được thêm vào lớp học.</p>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Thống kê học tập -->
-        <div class="row mb-4">
-            <div class="col-lg-8">
+        <!-- Recent Activities & Stats -->
+        <div class="row">
+            <!-- Thống kê học tập -->
+            <div class="col-lg-8 mb-4">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-info text-white">
                         <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Thống kê học tập</h4>
@@ -209,7 +142,11 @@
         </div>
     </div>
 </div>
-
+<div class="mt-4 text-end">
+    <a href="@Url.Action("Dashboard", "Student")" class="btn btn-outline-secondary">
+        ⬅️ Quay lại trang tổng quan
+    </a>
+<!-- CSS bổ sung -->
 <style>
     .card {
         border-radius: 15px;
