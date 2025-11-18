@@ -58,7 +58,7 @@ public partial class TblClass
     [InverseProperty("Class")]
     public virtual ICollection<TblLesson> TblLessons { get; set; } = new List<TblLesson>();
 
-    [ForeignKey("TeacherId")]
-    [InverseProperty("TblClasses")]
+    public virtual ICollection<TblQuiz> TblQuizzes { get; set; } = new List<TblQuiz>();
+
     public virtual TblUser Teacher { get; set; } = null!;
 }

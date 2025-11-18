@@ -19,6 +19,8 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<Submission> Submissions { get; set; }
 
+    public virtual DbSet<TblAnswer> TblAnswers { get; set; }
+
     public virtual DbSet<TblAttendanceRecord> TblAttendanceRecords { get; set; }
 
     public virtual DbSet<TblAttendanceSession> TblAttendanceSessions { get; set; }
@@ -35,11 +37,19 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblLesson> TblLessons { get; set; }
 
+    public virtual DbSet<TblQuestion> TblQuestions { get; set; }
+
+    public virtual DbSet<TblQuiz> TblQuizzes { get; set; }
+
+    public virtual DbSet<TblQuizAttempt> TblQuizAttempts { get; set; }
+
     public virtual DbSet<TblRole> TblRoles { get; set; }
+
+    public virtual DbSet<TblStudentAnswer> TblStudentAnswers { get; set; }
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
-
+   
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,6 +82,18 @@ public partial class EdumanageContext : DbContext
                 .HasForeignKey(d => d.AssignmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Submissions_tblUsers");
+        });
+
+        modelBuilder.Entity<TblAnswer>(entity =>
+        {
+            entity.HasKey(e => e.AnswerId);
+
+            entity.ToTable("tblAnswers");
+
+            entity.HasOne(d => d.Question).WithMany(p => p.TblAnswers)
+                .HasForeignKey(d => d.QuestionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblAnswers_tblQuestions");
         });
 
         modelBuilder.Entity<TblAttendanceRecord>(entity =>
@@ -231,6 +253,54 @@ public partial class EdumanageContext : DbContext
                 .HasConstraintName("FK_tblLessons_tblClasses");
         });
 
+        modelBuilder.Entity<TblQuestion>(entity =>
+        {
+            entity.HasKey(e => e.QuestionId);
+
+            entity.ToTable("tblQuestions");
+
+            entity.HasOne(d => d.Quiz).WithMany(p => p.TblQuestions)
+                .HasForeignKey(d => d.QuizId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblQuestions_tblQuizzes");
+        });
+
+        modelBuilder.Entity<TblQuiz>(entity =>
+        {
+            entity.HasKey(e => e.QuizId);
+
+            entity.ToTable("tblQuizzes");
+
+            entity.Property(e => e.CreateTime).HasColumnType("datetime");
+            entity.Property(e => e.Title).HasMaxLength(250);
+
+            entity.HasOne(d => d.Class).WithMany(p => p.TblQuizzes)
+                .HasForeignKey(d => d.ClassId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblQuizzes_tblClasses");
+        });
+
+        modelBuilder.Entity<TblQuizAttempt>(entity =>
+        {
+            entity.HasKey(e => e.AttemptId);
+
+            entity.ToTable("tblQuizAttempts");
+
+            entity.Property(e => e.EndTime).HasColumnType("datetime");
+            entity.Property(e => e.Startime).HasColumnType("datetime");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.Quiz).WithMany(p => p.TblQuizAttempts)
+                .HasForeignKey(d => d.QuizId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblQuizAttempts_tblQuizzes");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblQuizAttempts)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblQuizAttempts_tblUsers");
+        });
+
         modelBuilder.Entity<TblRole>(entity =>
         {
             entity.HasKey(e => e.RoleId);
@@ -239,6 +309,35 @@ public partial class EdumanageContext : DbContext
 
             entity.Property(e => e.RoleDescription).HasMaxLength(250);
             entity.Property(e => e.RoleName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<TblStudentAnswer>(entity =>
+        {
+            entity.HasKey(e => e.StudentAswerId);
+
+            entity.ToTable("tblStudentAnswers");
+
+            entity.Property(e => e.AnswerId).HasColumnName("AnswerID");
+
+            entity.HasOne(d => d.Answer).WithMany(p => p.TblStudentAnswers)
+                .HasForeignKey(d => d.AnswerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblStudentAnswers_tblAnswers");
+
+            entity.HasOne(d => d.Attemp).WithMany(p => p.TblStudentAnswers)
+                .HasForeignKey(d => d.AttempId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblStudentAnswers_tblQuizAttempts");
+
+            entity.HasOne(d => d.Quiz).WithMany(p => p.TblStudentAnswers)
+                .HasForeignKey(d => d.QuizId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblStudentAnswers_tblQuizzes");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TblStudentAnswers)
+                .HasForeignKey(d => d.Userid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_tblStudentAnswers_tblUsers");
         });
 
         modelBuilder.Entity<TblUser>(entity =>
