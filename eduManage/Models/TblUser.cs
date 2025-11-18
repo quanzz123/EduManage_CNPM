@@ -38,4 +38,8 @@ public partial class TblUser
     public virtual ICollection<TblClass> TblClasses { get; set; } = new List<TblClass>();
 
     public virtual ICollection<TblLearningProgress> TblLearningProgresses { get; set; } = new List<TblLearningProgress>();
+
+    public virtual ICollection<TblQuizAttempt> TblQuizAttempts { get; set; } = new List<TblQuizAttempt>();
+
+    public virtual ICollection<TblStudentAnswer> TblStudentAnswers { get; set; } = new List<TblStudentAnswer>();
 }

@@ -39,5 +39,7 @@ public partial class TblClass
 
     public virtual ICollection<TblLesson> TblLessons { get; set; } = new List<TblLesson>();
 
+    public virtual ICollection<TblQuiz> TblQuizzes { get; set; } = new List<TblQuiz>();
+
     public virtual TblUser Teacher { get; set; } = null!;
 }
