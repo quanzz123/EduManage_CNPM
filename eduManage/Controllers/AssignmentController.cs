@@ -86,32 +86,7 @@ namespace eduManage.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitAssignment(int assignmentId, string submissionText, string comments, IFormFile submissionFile)
         {
-            // Validate bắt buộc có nội dung
-            if (string.IsNullOrWhiteSpace(submissionText))
-            {
-                TempData["ErrorMessage"] = "Vui lòng nhập nội dung bài làm";
-                return RedirectToAction("Details", new { id = assignmentId });
-            }
 
-            // Validate file nếu có
-            if (submissionFile != null && submissionFile.Length > 0)
-            {
-                // Kiểm tra kích thước file (10MB)
-                if (submissionFile.Length > 10 * 1024 * 1024)
-                {
-                    TempData["ErrorMessage"] = "File quá lớn. Kích thước tối đa là 10MB.";
-                    return RedirectToAction("Details", new { id = assignmentId });
-                }
-
-                // Kiểm tra định dạng file
-                var allowedExtensions = new[] { ".pdf", ".doc", ".docx", ".zip", ".rar", ".txt", ".jpg", ".jpeg", ".png", ".gif" };
-                var fileExtension = Path.GetExtension(submissionFile.FileName).ToLower();
-                if (!allowedExtensions.Contains(fileExtension))
-                {
-                    TempData["ErrorMessage"] = "Định dạng file không được hỗ trợ.";
-                    return RedirectToAction("Details", new { id = assignmentId });
-                }
-            }
             var studentId = HttpContext.Session.GetInt32("StudentId");
             if (studentId == null)
                 return RedirectToAction("Login", "Login");
@@ -135,10 +110,10 @@ namespace eduManage.Controllers
                 string fileUrl = null;
                 if (submissionFile != null && submissionFile.Length > 0)
                 {
-                    // Lưu file (cần implement logic lưu file thực tế)
+                    // Lưu file
                     var fileName = $"{studentId}_{assignmentId}_{DateTime.Now:yyyyMMddHHmmss}_{Path.GetFileName(submissionFile.FileName)}";
                     var filePath = Path.Combine("wwwroot/uploads", fileName);
-
+                    
                     // Tạo thư mục nếu chưa tồn tại
                     var directory = Path.GetDirectoryName(filePath);
                     if (!Directory.Exists(directory))
@@ -188,6 +163,26 @@ namespace eduManage.Controllers
 
             ViewBag.AssignmentId = assignmentId;
             return View(submissions);
+        }
+
+        // Xem điểm và phản hồi
+        public IActionResult ViewScore(int submissionId)
+        {
+            var studentId = HttpContext.Session.GetInt32("StudentId");
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+            var submission = _context.Submissions
+                .Include(s => s.Assignment)
+                .FirstOrDefault(s => s.SubmissionId == submissionId && s.StudentId == studentId);
+
+            if (submission == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy bài nộp";
+                return RedirectToAction("Index");
+            }
+
+            return View(submission);
         }
     }
 }
