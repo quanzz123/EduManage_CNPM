@@ -1,48 +1,80 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using eduManage.Models;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace eduManage.Controllers
 {
     public class AssignmentController : Controller
     {
         private readonly EdumanageContext _context;
-        private readonly IWebHostEnvironment _environment;
 
-        public AssignmentController(EdumanageContext context, IWebHostEnvironment environment)
+        public AssignmentController(EdumanageContext context)
         {
             _context = context;
-            _environment = environment;
         }
 
-        // Hiển thị danh sách bài tập
+        // Danh sách bài tập
         public IActionResult Index()
         {
+            var studentId = HttpContext.Session.GetInt32("StudentId");
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+            // Lấy danh sách lớp của sinh viên
+            var studentClasses = _context.TblClassMembers
+                .Where(m => m.UserId == studentId)
+                .Select(m => m.ClassId)
+                .ToList();
+
+            // Lấy bài tập từ các lớp đó
             var assignments = _context.Assignments
+                .Where(a => studentClasses.Contains(a.ClassId) && a.IsActive == true)
+                .Include(a => a.Class)
                 .OrderByDescending(a => a.Deadline)
                 .ToList();
 
+            // Kiểm tra trạng thái nộp bài
+            var assignmentIds = assignments.Select(a => a.AssignmentId).ToList();
+            var submissions = _context.Submissions
+                .Where(s => s.StudentId == studentId && assignmentIds.Contains(s.AssignmentId))
+                .ToList();
+
+            ViewBag.Submissions = submissions;
             return View(assignments);
         }
 
-        // Xem chi tiết bài tập
+        // Chi tiết bài tập
         public IActionResult Details(int id)
         {
-            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == id);
+            var studentId = HttpContext.Session.GetInt32("StudentId");
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+            var assignment = _context.Assignments
+                .Include(a => a.Class)
+                .FirstOrDefault(a => a.AssignmentId == id && a.IsActive == true);
+
             if (assignment == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Bài tập không tồn tại";
+                return RedirectToAction("Index");
             }
 
-            // Lấy bài nộp gần nhất theo đúng tên cột
+            // Kiểm tra sinh viên có trong lớp không
+            var isInClass = _context.TblClassMembers
+                .Any(m => m.UserId == studentId && m.ClassId == assignment.ClassId);
+
+            if (!isInClass)
+            {
+                TempData["ErrorMessage"] = "Bạn không có quyền truy cập bài tập này";
+                return RedirectToAction("Index");
+            }
+
+            // Lấy bài nộp gần nhất
             var latestSubmission = _context.Submissions
-                .Where(s => s.AssignmentId == id)
+                .Where(s => s.AssignmentId == id && s.StudentId == studentId)
                 .OrderByDescending(s => s.SubmitDate)
                 .FirstOrDefault();
 
@@ -50,58 +82,83 @@ namespace eduManage.Controllers
             return View(assignment);
         }
 
-
+        // Nộp bài tập
         [HttpPost]
         public async Task<IActionResult> SubmitAssignment(int assignmentId, string submissionText, string comments, IFormFile submissionFile)
         {
-            try
+            // Validate bắt buộc có nội dung
+            if (string.IsNullOrWhiteSpace(submissionText))
             {
-                var studentId = HttpContext.Session.GetInt32("StudentId");
-                if (studentId == null)
+                TempData["ErrorMessage"] = "Vui lòng nhập nội dung bài làm";
+                return RedirectToAction("Details", new { id = assignmentId });
+            }
+
+            // Validate file nếu có
+            if (submissionFile != null && submissionFile.Length > 0)
+            {
+                // Kiểm tra kích thước file (10MB)
+                if (submissionFile.Length > 10 * 1024 * 1024)
                 {
-                    return RedirectToAction("Login", "Login");
+                    TempData["ErrorMessage"] = "File quá lớn. Kích thước tối đa là 10MB.";
+                    return RedirectToAction("Details", new { id = assignmentId });
                 }
 
-                var assignment = await _context.Assignments.FirstOrDefaultAsync(a => a.AssignmentId == assignmentId);
+                // Kiểm tra định dạng file
+                var allowedExtensions = new[] { ".pdf", ".doc", ".docx", ".zip", ".rar", ".txt", ".jpg", ".jpeg", ".png", ".gif" };
+                var fileExtension = Path.GetExtension(submissionFile.FileName).ToLower();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    TempData["ErrorMessage"] = "Định dạng file không được hỗ trợ.";
+                    return RedirectToAction("Details", new { id = assignmentId });
+                }
+            }
+            var studentId = HttpContext.Session.GetInt32("StudentId");
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+            try
+            {
+                var assignment = await _context.Assignments.FindAsync(assignmentId);
                 if (assignment == null)
                 {
-                    TempData["ErrorMessage"] = "Bài tập không tồn tại!";
+                    TempData["ErrorMessage"] = "Bài tập không tồn tại";
                     return RedirectToAction("Index");
                 }
 
-                string filePath = null;
+                // Kiểm tra hạn nộp
+                if (assignment.Deadline.HasValue && assignment.Deadline.Value < DateTime.Now)
+                {
+                    TempData["ErrorMessage"] = "Đã quá hạn nộp bài";
+                    return RedirectToAction("Details", new { id = assignmentId });
+                }
+
+                string fileUrl = null;
                 if (submissionFile != null && submissionFile.Length > 0)
                 {
-                    if (submissionFile.Length > 10 * 1024 * 1024)
-                    {
-                        TempData["ErrorMessage"] = "File không được vượt quá 10MB!";
-                        return RedirectToAction("Details", new { id = assignmentId });
-                    }
-
-                    var uploadsFolder = Path.Combine(_environment.WebRootPath, "submissions");
-                    if (!Directory.Exists(uploadsFolder))
-                        Directory.CreateDirectory(uploadsFolder);
-
+                    // Lưu file (cần implement logic lưu file thực tế)
                     var fileName = $"{studentId}_{assignmentId}_{DateTime.Now:yyyyMMddHHmmss}_{Path.GetFileName(submissionFile.FileName)}";
-                    filePath = Path.Combine(uploadsFolder, fileName);
+                    var filePath = Path.Combine("wwwroot/uploads", fileName);
+
+                    // Tạo thư mục nếu chưa tồn tại
+                    var directory = Path.GetDirectoryName(filePath);
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await submissionFile.CopyToAsync(stream);
                     }
-
-                    filePath = $"/submissions/{fileName}";
+                    fileUrl = $"/uploads/{fileName}";
                 }
 
                 var submission = new Submission
                 {
                     AssignmentId = assignmentId,
                     StudentId = studentId.Value,
-                    FileUrl = filePath,
+                    FileUrl = fileUrl,
                     SubmitDate = DateTime.Now,
-                    Score = null,
-                    Feedback = comments,
-                    Status = "Đã nộp"
+                    Status = "Đã nộp",
+                    Feedback = comments
                 };
 
                 _context.Submissions.Add(submission);
@@ -112,19 +169,17 @@ namespace eduManage.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Có lỗi xảy ra khi nộp bài: " + ex.Message;
+                TempData["ErrorMessage"] = $"Lỗi khi nộp bài: {ex.Message}";
                 return RedirectToAction("Details", new { id = assignmentId });
             }
         }
 
-        // Xem lịch sử nộp bài
+        // Lịch sử nộp bài
         public IActionResult SubmissionHistory(int assignmentId)
         {
             var studentId = HttpContext.Session.GetInt32("StudentId");
             if (studentId == null)
-            {
                 return RedirectToAction("Login", "Login");
-            }
 
             var submissions = _context.Submissions
                 .Where(s => s.AssignmentId == assignmentId && s.StudentId == studentId)

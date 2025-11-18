@@ -44,12 +44,6 @@ public partial class TblUser
     [InverseProperty("AssignmentNavigation")]
     public virtual ICollection<Submission> Submissions { get; set; } = new List<Submission>();
 
-<<<<<<< HEAD
-    public virtual ICollection<TblAttendanceRecord> TblAttendanceRecords { get; set; } = new List<TblAttendanceRecord>();
-
-    public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
-
-=======
     [InverseProperty("User")]
     public virtual ICollection<TblAttendanceRecord> TblAttendanceRecords { get; set; } = new List<TblAttendanceRecord>();
 
@@ -57,7 +51,6 @@ public partial class TblUser
     public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
 
     [InverseProperty("User")]
->>>>>>> 094386d1a1a01a0e43ad1b03c56e72832ca52cdc
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     [InverseProperty("Teacher")]

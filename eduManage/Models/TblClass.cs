@@ -49,15 +49,10 @@ public partial class TblClass
     [InverseProperty("Class")]
     public virtual ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
 
-<<<<<<< HEAD
-    public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
-
-=======
     [InverseProperty("Class")]
     public virtual ICollection<TblAttendanceSession> TblAttendanceSessions { get; set; } = new List<TblAttendanceSession>();
 
     [InverseProperty("Class")]
->>>>>>> 094386d1a1a01a0e43ad1b03c56e72832ca52cdc
     public virtual ICollection<TblClassMember> TblClassMembers { get; set; } = new List<TblClassMember>();
 
     [InverseProperty("Class")]
