@@ -1,0 +1,168 @@
+﻿@model eduManage.Models.TblQuiz
+
+@{
+    ViewData["Title"] = "Thêm câu hỏi";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <div class="container mt-4">
+    <div class="card shadow mb-4">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">
+                <i class="bi bi-card-text"></i> @Model.Title
+            </h4>
+            <small>@Model.Descriptions</small>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i>
+                <strong>Số câu hỏi hiện tại:</strong> @Model.TblQuestions.Count |
+                <strong>Thời gian:</strong> @Model.Duration phút
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Form thêm câu hỏi mới -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Thêm câu hỏi mới</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddQuestion" method="post" id="questionForm">
+                <input type="hidden" name="QuizId" value="@Model.QuizId" />
+
+                <div class="mb-3">
+                    <label class="form-label">Nội dung câu hỏi <span class="text-danger">*</span></label>
+                    <textarea name="Content" class="form-control" rows="3" required
+                              placeholder="Nhập nội dung câu hỏi..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Các đáp án (chọn đáp án đúng)</label>
+                    <div id="answersContainer">
+                        <div class="input-group mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="isCorrectAnswers" value="true" />
+                            </div>
+                            <input type="text" name="answerContents" class="form-control"
+                                   placeholder="Đáp án A" required />
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="isCorrectAnswers" value="true" />
+                            </div>
+                            <input type="text" name="answerContents" class="form-control"
+                                   placeholder="Đáp án B" required />
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="isCorrectAnswers" value="true" />
+                            </div>
+                            <input type="text" name="answerContents" class="form-control"
+                                   placeholder="Đáp án C" required />
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" name="isCorrectAnswers" value="true" />
+                            </div>
+                            <input type="text" name="answerContents" class="form-control"
+                                   placeholder="Đáp án D" required />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addAnswer()">
+                        <i class="bi bi-plus"></i> Thêm đáp án
+                    </button>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại danh sách
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Thêm câu hỏi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Danh sách câu hỏi đã thêm -->
+    @if (Model.TblQuestions.Any())
+    {
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-list-ol"></i> Danh sách câu hỏi</h5>
+            </div>
+            <div class="card-body">
+                @foreach (var question in Model.TblQuestions.OrderBy(q => q.Index))
+                {
+                    <div class="card mb-3">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            @* <strong>Câu @question.Index: (@question.sc điểm)</strong> *@
+                            <form asp-action="DeleteQuestion" asp-route-id="@question.QuestionId" method="post"
+                                  onsubmit="return confirm('Bạn có chắc muốn xóa câu hỏi này?');"
+                                  style="display: inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </button>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2"><strong>@question.Content</strong></p>
+                            <ul class="list-group list-group-flush">
+                                @foreach (var answer in question.TblAnswers)
+                                {
+                                    <li class="list-group-item @(answer.IsCorect ? "list-group-item-success" : "")">
+                                        @if (answer.IsCorect)
+                                        {
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-circle"></i>
+                                        }
+                                        @answer.Content
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        let answerCount = 4;
+
+        function addAnswer() {
+            answerCount++;
+            const container = document.getElementById('answersContainer');
+            const newAnswer = `
+                <div class="input-group mb-2">
+                    <div class="input-group-text">
+                        <input type="checkbox" name="isCorrectAnswers" value="true" />
+                    </div>
+                    <input type="text" name="answerContents" class="form-control"
+                           placeholder="Đáp án ${String.fromCharCode(64 + answerCount)}" required />
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newAnswer);
+        }
+    </script>
+}
