@@ -6,7 +6,7 @@
 }
 
 <div class="container mt-4">
-    <h2 class="mb-4 text-primary fw-bold">📚 Danh sách bài tập được giao</h2>
+    <h2 class="mb-4 text-primary fw-bold">Danh sách bài tập được giao</h2>
 
     @if (!Model.Any())
     {
@@ -76,7 +76,7 @@
                             <td>
                                 @{
                                     // Giả sử có trạng thái nộp bài - bạn cần thêm logic thực tế
-                                    var isSubmitted = false; // Thay bằng logic thực tế từ database
+                                    var isSubmitted = false;
                                 }
                                 @if (isSubmitted)
                                 {

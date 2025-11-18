@@ -14,9 +14,10 @@ public partial class EdumanageContext : DbContext
         : base(options)
     {
     }
+
     public virtual DbSet<Assignment> Assignments { get; set; }
+
     public virtual DbSet<Submission> Submissions { get; set; }
-<<<<<<< HEAD
 
     public virtual DbSet<TblAttendanceRecord> TblAttendanceRecords { get; set; }
 
@@ -24,8 +25,6 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblAttendanceStatus> TblAttendanceStatuses { get; set; }
 
-=======
->>>>>>> 094386d1a1a01a0e43ad1b03c56e72832ca52cdc
     public virtual DbSet<TblClass> TblClasses { get; set; }
 
     public virtual DbSet<TblClassMember> TblClassMembers { get; set; }
@@ -40,7 +39,7 @@ public partial class EdumanageContext : DbContext
 
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
- 
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -220,6 +219,7 @@ public partial class EdumanageContext : DbContext
             entity.HasKey(e => e.LessonId);
 
             entity.ToTable("tblLessons");
+            entity.Property(e => e.OrderIdx);
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(250);

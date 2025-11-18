@@ -22,9 +22,9 @@ namespace eduManage.Controllers
             if (studentId != null)
                 return RedirectToAction("Dashboard", "Student");
 
-            // 🔹 Đăng nhập tự động cho student1@edu.vn
+            // Đăng nhập tự động cho student1@edu.vn
             var autoStudent = _context.TblUsers
-                .FirstOrDefault(u => u.Email == "student1@edu.vn" && u.PassworkHash == "123456" && u.RoleId == 3);
+                .FirstOrDefault(u => u.Email == "student2@edu.vn" && u.PassworkHash == "123456" && u.RoleId == 3);
 
             if (autoStudent != null)
             {
