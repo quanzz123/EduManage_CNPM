@@ -38,59 +38,60 @@
         </div>
 
         <!-- Danh sách bài học -->
-        <div class="row">
-            <div class="col-12">
-                @if (classInfo == null)
-                {
-                    <div class="alert alert-danger">
-                        <h5>Lỗi: Không tìm thấy lớp học</h5>
-                        <p>ClassId từ URL: @Context.Request.Query["classId"]</p>
-                    </div>
-                }
-                else if (Model != null && Model.Count > 0)
-                {
-                    <div class="list-group">
-                        @foreach (var item in Model)
-                        {
-                            string statusText = "Chưa học";
-                            string statusClass = "text-muted";
+		<div class="row">
+			<div class="col-12">
+				@if (classInfo == null)
+				{
+					<div class="alert alert-danger">
+						<h5>Lỗi: Không tìm thấy lớp học</h5>
+						<p>ClassId từ URL: @Context.Request.Query["classId"]</p>
+					</div>
+				}
+				else if (Model != null && Model.Count > 0)
+				{
+					<div class="list-group">
+						@foreach (var item in Model)
+						{
+							string statusText = "Chưa học";
+							string statusClass = "text-muted";
 
-                            var progress = progressList?.FirstOrDefault(p => p.LessonId == item.LessonId);
-                            if (progress != null)
-                            {
-                                if (progress.IsCompleted == true)
-                                {
-                                    statusText = "Đã hoàn thành";
-                                    statusClass = "text-success";
-                                }
-                                else if (progress.CompletionRate > 0)
-                                {
-                                    statusText = $"Đang học ({progress.CompletionRate}%)";
-                                    statusClass = "text-warning";
-                                }
-                            }
+							var progress = progressList?.FirstOrDefault(p => p.LessonId == item.LessonId);
+							if (progress != null)
+							{
+								if (progress.IsCompleted == true)
+								{
+									statusText = "Đã hoàn thành";
+									statusClass = "text-success";
+								}
+								else if (progress.CompletionRate > 0)
+								{
+									statusText = $"Đang học ({progress.CompletionRate}%)";
+									statusClass = "text-warning";
+								}
+							}
 
-                            <a href="@Url.Action("LessonContent", "Student", new { lessonId = item.LessonId })"
-                               class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">@($"{item.OrderIdx}. {item.Title}")</h5>
-                                    <small class="@statusClass">@statusText</small>
-                                </div>
-                                <p class="mb-1">@item.Description</p>
-                                <small class="text-muted">Bài học ID: @item.LessonId</small>
-                            </a>
-                        }
-                    </div>
-                }
-                else
-                {
-                    <div class="alert alert-warning">
-                        <h5>Không có bài học nào!</h5>
-                        <p>Lớp: @classInfo.ClassName (ID: @classInfo.ClassId)</p>
-                        <p>Giáo viên có thể chưa thêm bài học cho lớp này.</p>
-                    </div>
-                }
-            </div>
-        </div>
+							<a href="@Url.Action("LessonContent", "Student", new { lessonId = item.LessonId })"
+							   class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1">@($"{item.OrderIdx}. {item.Title}")</h5>
+									<small class="@statusClass">@statusText</small>
+								</div>
+								<p class="mb-1">@Html.Raw(item.Description)</p>
+								<small class="text-muted">Bài học ID: @item.LessonId</small>
+							</a>
+						}
+					</div>
+				}
+				else
+				{
+					<div class="alert alert-warning">
+						<h5>Không có bài học nào!</h5>
+						<p>Lớp: @classInfo.ClassName (ID: @classInfo.ClassId)</p>
+						<p>Giáo viên có thể chưa thêm bài học cho lớp này.</p>
+					</div>
+				}
+			</div>
+		</div>
     </div>
 </div>
+

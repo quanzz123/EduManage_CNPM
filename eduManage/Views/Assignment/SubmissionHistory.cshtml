@@ -1,85 +1,128 @@
-﻿@model IEnumerable<eduManage.Models.Submission>
+﻿@model List<eduManage.Models.Submission>
 
 @{
     ViewData["Title"] = "Lịch sử nộp bài";
     Layout = "_Layout";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="text-primary"> Lịch sử nộp bài</h2>
-        <a href="@Url.Action("Details", new { id = ViewBag.AssignmentId })" class="btn btn-outline-primary">
-            <i class="fas fa-arrow-left me-1"></i> Quay lại bài tập
-        </a>
+<div class="container-fluid py-4">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="display-5 text-primary">
+                            <i class="fas fa-history me-3"></i>Lịch sử nộp bài
+                        </h1>
+                        <p class="lead text-muted">Xem lại tất cả các lần nộp bài của bạn</p>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Details", new { id = ViewBag.AssignmentId })" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-arrow-left me-1"></i> Quay lại bài tập
+                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                            <i class="fas fa-tasks me-1"></i> Danh sách bài tập
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-list me-2"></i>Tất cả lần nộp bài
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        @if (!Model.Any())
+                        {
+                            <div class="text-center py-5">
+                                <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                                <h4 class="text-muted">Chưa có lần nộp bài nào</h4>
+                                <p class="text-muted">Các lần nộp bài sẽ được hiển thị ở đây.</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Thời gian nộp</th>
+                                            <th>File đính kèm</th>
+                                            <th>Điểm</th>
+                                            <th>Phản hồi</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var submission in Model)
+                                        {
+                                            <tr>
+                                                <td>@submission.SubmitDate?.ToString("dd/MM/yyyy HH:mm")</td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(submission.FileUrl))
+                                                    {
+                                                        <a href="@submission.FileUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+                                                            <i class="fas fa-download me-1"></i> Tải file
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted">Không có file</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (submission.Score.HasValue)
+                                                    {
+                                                        <span class="badge bg-success fs-6">@submission.Score.Value</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-warning">Chưa chấm</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(submission.Feedback))
+                                                    {
+                                                        <div class="feedback-content">
+                                                            @Html.Raw(submission.Feedback)
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted">Chưa có phản hồi</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <span class="badge @(submission.Status == "Đã chấm" ? "bg-success" : "bg-info")">
+                                                        @submission.Status
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    @if (!Model.Any())
-    {
-        <div class="alert alert-info">
-            <i class="fas fa-info-circle me-2"></i>
-            Chưa có bài nộp nào cho bài tập này.
-        </div>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead class="table-primary">
-                    <tr>
-                        <th>Thời gian nộp</th>
-                        <th>Nội dung</th>
-                        <th>File đính kèm</th>
-                        <th>Điểm</th>
-                        <th>Phản hồi</th>
-                        <th>Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var submission in Model)
-                    {
-                        <tr>
-                            <td>@submission.SubmitDate?.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(submission.FileUrl))
-                                {
-                                    <a href="@submission.FileUrl" target="_blank" class="btn btn-outline-secondary btn-sm">
-                                        <i class="fas fa-download me-1"></i> Tải file
-                                    </a>
-                                }
-                                else
-                                {
-                                    <span class="text-muted">Không có file</span>
-                                }
-                            </td>
-                            <td>
-                                @if (submission.Score.HasValue)
-                                {
-                                    <span class="badge bg-success fs-6">@submission.Score.Value</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-warning">Chưa chấm</span>
-                                }
-                            </td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(submission.Feedback))
-                                {
-                                    @submission.Feedback
-                                }
-                                else
-                                {
-                                    <span class="text-muted">Chưa có phản hồi</span>
-                                }
-                            </td>
-                            <td>
-                                <span class="badge @(submission.Status == "Đã nộp" ? "bg-info" : "bg-success")">
-                                    @submission.Status
-                                </span>
-                            </td>
-                        </tr>
-                    }
-
-            </table>
-        </div>
-    }
 </div>
+
+<style>
+    .feedback-content {
+        max-width: 300px;
+        max-height: 100px;
+        overflow: auto;
+        padding: 5px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        border: 1px solid #dee2e6;
+    }
+</style>
