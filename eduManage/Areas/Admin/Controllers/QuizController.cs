@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
@@ -31,25 +32,34 @@ namespace eduManage.Areas.Admin.Controllers
         {
 
             ViewBag.classId = id;
-            return View();
+            return View();  
         }
 
-        public IActionResult Create(TblQuiz model)
+        public IActionResult Create(QuizVM model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                model.CreateTime = DateTime.Now;   
-                model.Isactive = true;              
-
-                _context.TblQuizzes.Add(model);
-                _context.SaveChanges();
-
-                return RedirectToAction("Details", new { classId = model.ClassId });
+                ViewBag.classId = model.ClassId;
+                return View(model);
             }
 
+            var quiz = new TblQuiz
+            {
+                ClassId = model.ClassId,
+                Title = model.Title,
+                Duration = model.Duration,
+                Descriptions = model.Descriptions,
+                CreateTime = DateTime.Now,
+                Isactive = true
+            };
 
-            ViewBag.classId = model.ClassId;
-            return View(model);
+            _context.TblQuizzes.Add(quiz);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = model.ClassId });
+
+
+            
         }
         [HttpGet]
         public IActionResult AddQuestion(int id)

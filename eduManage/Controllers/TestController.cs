@@ -37,7 +37,6 @@ namespace eduManage.Controllers
                             Title = q.Title,
                             SubjectName = "Tiếng Anh", 
                             Duration = (int)q.Duration,
-                            //Deadline = q.CreateTime.AddDays(7),
                             QuestionCount = _context.TblQuestions.Count(x => x.QuizId == q.QuizId),
 
                             IsDone = _context.TblQuizAttempts.Any(a => a.QuizId == q.QuizId && a.UserId == userid),
@@ -121,7 +120,7 @@ namespace eduManage.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Result", new { quizid = QuizId });
+            return RedirectToAction("QuizList", new { id = quiz.ClassId });
         }
         public IActionResult Result(int quizid)
         {
