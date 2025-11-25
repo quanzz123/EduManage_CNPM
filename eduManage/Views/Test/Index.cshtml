@@ -1,0 +1,30 @@
+﻿@model IEnumerable<eduManage.Models.TblClass>
+<!-- Blog Start -->
+<div class="container-fluid blog py-5">
+    <div class="container py-5">
+       @*  <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-uppercase text-primary">Our Blog</h4>
+            <h1 class="display-3 text-capitalize mb-3">Latest Blog & News</h1>
+        </div> *@
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model) {
+
+                <div class="col-lg-6 col-xl-4 wow fadeInUp" >
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="~/img/class.jpg" class="img-fluid rounded-top w-100" alt="">
+                            <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i> @item.Schedule</div>
+                        </div>
+                        <div class="blog-content rounded-bottom p-4">
+                            <a href="#" class="h4 d-inline-block mb-3">@item.ClassName</a>
+                            <p>@Html.Raw(item.Description)</p>
+                            <a asp-route-id="@item.ClassId" asp-action="QuizList" class="fw-bold text-secondary">Xem thêm<i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

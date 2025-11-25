@@ -1,0 +1,339 @@
+﻿@model IEnumerable<eduManage.ViewModels.QuizListVM>
+<style>
+    :root {
+        --primary-color: #2563eb;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --danger-color: #ef4444;
+        --info-color: #06b6d4;
+        --light-bg: #f9fafb;
+        --border-color: #e5e7eb;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .navbar {
+        background: white;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--primary-color) !important;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-dark);
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .header-section {
+        background: white;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .header-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: var(--text-light);
+        font-size: 0.95rem;
+    }
+
+    .search-filters {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+        .search-filters .form-control,
+        .search-filters .form-select {
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 1rem;
+        }
+
+    .quiz-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+        .quiz-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+    .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .quiz-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .quiz-subject {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-top: 0.25rem;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .status-completed {
+        background-color: #d1fae5;
+        color: #065f46;
+    }
+
+    .status-pending {
+        background-color: #fef3c7;
+        color: #92400e;
+    }
+
+    .status-failed {
+        background-color: #fee2e2;
+        color: #991b1b;
+    }
+
+    .quiz-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-label {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .score-display {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+        .score-display.good {
+            color: var(--success-color);
+        }
+
+        .score-display.warning {
+            color: var(--warning-color);
+        }
+
+        .score-display.bad {
+            color: var(--danger-color);
+        }
+
+    .quiz-actions {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .btn-action {
+        flex: 1;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        border: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn-view {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+        .btn-view:hover {
+            background-color: #1d4ed8;
+            color: white;
+        }
+
+    .btn-retry {
+        background-color: #f3f4f6;
+        color: var(--primary-color);
+        border: 1px solid var(--border-color);
+    }
+
+        .btn-retry:hover {
+            background-color: var(--light-bg);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .empty-text {
+        color: var(--text-light);
+        font-size: 1rem;
+    }
+
+
+</style>
+  <!-- Main Content -->
+<div class="container-fluid" style="padding: 2rem 1rem;">
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="header-title">📋 Bài Kiểm Tra</div>
+        <p class="header-subtitle">Xem lại danh sách các bài kiểm tra của bạn</p>
+
+        <!-- Search & Filter -->
+        <div class="search-filters">
+            <input type="text" class="form-control" placeholder="🔍 Tìm kiếm bài kiểm tra..." style="flex: 1; max-width: 300px;">
+            <select class="form-select" style="max-width: 200px;">
+                <option selected>Tất cả trạng thái</option>
+                <option>Đã hoàn thành</option>
+                <option>Chưa làm</option>
+                <option>Cần chữa</option>
+            </select>
+            <select class="form-select" style="max-width: 200px;">
+                <option selected>Tất cả môn học</option>
+                <option>Toán</option>
+                <option>Tiếng Anh</option>
+                <option>Lịch Sử</option>
+                <option>Khoa Học</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Quiz List -->
+    <div class="row">
+        <div class="col-12">
+
+            @foreach (var quiz in Model)
+            {
+                <div class="quiz-card">
+                    <div class="quiz-header">
+                        <div>
+                            <div class="quiz-title">@quiz.Title</div>
+                            @* <div class="quiz-subject">Môn: @quiz.SubjectName</div> *@
+                        </div>
+
+                        @if (quiz.IsDone)
+                        {
+                            <span class="status-badge status-completed">✔ Đã làm</span>
+                        }
+                        else
+                        {
+                            <span class="status-badge status-pending">⏳ Chưa làm</span>
+                        }
+                    </div>
+
+                    <div class="quiz-info">
+                        <div class="info-item">
+                            <span class="info-label">Điểm</span>
+                            <span class="info-value">@((quiz.Score.HasValue ? quiz.Score.Value.ToString() : "-"))</span>
+                        </div>
+
+                        @* <div class="info-item">
+                            <span class="info-label">Hạn chót</span>
+                            <span class="info-value">@quiz.Deadline.ToString("dd/MM/yyyy")</span>
+                        </div> *@
+
+                        <div class="info-item">
+                            <span class="info-label">Thời gian tối đa</span>
+                            <span class="info-value">@quiz.Duration phút</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label">Câu hỏi</span>
+                            <span class="info-value">@quiz.QuestionCount câu</span>
+                        </div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        @if (!quiz.IsDone)
+                        {
+                            <a class="start-btn" asp-action="Start" asp-route-id="@quiz.QuizId">Bắt đầu</a>
+                        }
+                        else
+                        {
+                            <a class="view-btn" href="/Quiz/Result/@quiz.QuizId">Xem kết quả</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

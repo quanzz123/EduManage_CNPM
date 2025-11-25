@@ -16,13 +16,40 @@ namespace eduManage.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var clasLis = _context.TblClasses.Where(t => t.TeacherId == 3).ToList();
+
             return View(clasLis);
         }
 
         public IActionResult Details(int id)
         {
             var quiz = _context.TblQuizzes.Where(c => c.ClassId == id && c.Isactive == true).ToList();
+            ViewBag.classId = id;
             return View(quiz);
+        }
+        [HttpGet]
+        public IActionResult Create(int id)
+        {
+
+            ViewBag.classId = id;
+            return View();
+        }
+
+        public IActionResult Create(TblQuiz model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.CreateTime = DateTime.Now;   
+                model.Isactive = true;              
+
+                _context.TblQuizzes.Add(model);
+                _context.SaveChanges();
+
+                return RedirectToAction("Details", new { classId = model.ClassId });
+            }
+
+
+            ViewBag.classId = model.ClassId;
+            return View(model);
         }
         [HttpGet]
         public IActionResult AddQuestion(int id)
