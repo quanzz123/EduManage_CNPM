@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewData["Title"] = "UserActiveByMonth";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin-top: 40px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stats-box {
+        background-color: white;
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: center;
+    }
+
+        .stats-box h4 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-box h2 {
+            color: #333;
+            margin: 0;
+        }
+
+    .chart-container {
+        position: relative;
+        height: 350px;
+        padding: 20px;
+    }
+
+    table {
+        font-size: 0.95rem;
+    }
+
+    thead {
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="page-wrapper">
+
+    <div class="container">
+        <div class="mb-4">
+            <h2 class="text-center">Thống Kê Người Dùng Theo Tháng</h2>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="stats-box">
+                    <h4>Tổng User</h4>
+                    <h2 id="totalUsers">0</h2>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stats-box">
+                    <h4>Trung Bình/Tháng</h4>
+                    <h2 id="avgUsers">0</h2>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stats-box">
+                    <h4>Tháng Cao Nhất</h4>
+                    <h2 id="bestMonth">-</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 mb-4">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Biểu Đồ</h5>
+                        <div>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="changeYear(-1)">&lt;</button>
+                            <span class="mx-2" id="currentYear">2024</span>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="changeYear(1)">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="userChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 mb-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Chi Tiết</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tháng</th>
+                                    <th class="text-end">Số User</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script>
+        let currentYear = new Date().getFullYear();
+        let chart;
+
+        const monthlyLabels = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+        const fullLabels = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6',
+                            'Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+
+        document.getElementById('currentYear').textContent = currentYear;
+
+        // Gọi API lấy dữ liệu thật
+        async function loadData() {
+            const res = await fetch(`/Admin/statistics/GetUserActiveByMonth?year=${currentYear}`);
+            const data = await res.json();
+
+            const users = data.map(x => x.soLuong ?? x.SoLuong);
+
+            // Tính toán thống kê
+            const totalUsers = users.reduce((a, b) => a + b, 0);
+            const avgUsers = Math.round(totalUsers / 12);
+            const maxUsers = Math.max(...users);
+            const bestMonthIndex = users.indexOf(maxUsers);
+
+            document.getElementById('totalUsers').textContent = totalUsers.toLocaleString('vi-VN');
+            document.getElementById('avgUsers').textContent = avgUsers.toLocaleString('vi-VN');
+            document.getElementById('bestMonth').textContent = fullLabels[bestMonthIndex];
+
+            // Cập nhật bảng
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            fullLabels.forEach((month, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${month}</td>
+                    <td class="text-end">${users[i].toLocaleString('vi-VN')}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Cập nhật biểu đồ
+            chart.data.datasets[0].data = users;
+            chart.update();
+        }
+
+        function changeYear(direction) {
+            currentYear += direction;
+            if (currentYear < 2020) currentYear = 2020;
+            if (currentYear > new Date().getFullYear()) currentYear = new Date().getFullYear();
+            document.getElementById('currentYear').textContent = currentYear;
+            loadData();
+        }
+
+        // Khởi tạo biểu đồ
+        const ctx = document.getElementById('userChart').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: monthlyLabels,
+                datasets: [{
+                    label: 'Số lượng User',
+                    data: [],
+                    backgroundColor: '#6c757d',
+                    borderColor: '#495057',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#e0e0e0' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Load dữ liệu ban đầu
+        loadData();
+    </script>
+}
+
+
