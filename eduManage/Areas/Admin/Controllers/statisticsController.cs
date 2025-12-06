@@ -13,6 +13,10 @@ namespace eduManage.Areas.Admin.Controllers
             _context = context;
 
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult UserActiveByMonth()
         {
             return View();
