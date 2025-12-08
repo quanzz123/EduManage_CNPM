@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -39,34 +40,131 @@ namespace eduManage.Areas.Admin.Controllers
                 return View();
             }
             [HttpPost]
-            public async Task<IActionResult> Create(TblClass? cls)
+            public IActionResult Create(ClassesVM model)
             {
-                if (ModelState.IsValid)
+            Console.WriteLine("Creating class with the following details:");
+            Console.WriteLine($"ClassName: {model.ClassName}"); 
+            Console.WriteLine($"Desc: {model.Description}"); 
+            Console.WriteLine($"subject: {model.Subject}"); 
+            Console.WriteLine($"maxstudeny: {model.MaxStudents}"); 
+            Console.WriteLine($"start: {model.StartDate}");
+            Console.WriteLine($"end: {model.EndDate}");
+            Console.WriteLine($"acticve: {model.IsActive}");
+            Console.WriteLine($"teacher: {model.TeacherId}");
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("⚠️ ModelState is INVALID. Showing validation errors:");
+
+                foreach (var state in ModelState)
                 {
-                    cls.CreateDate = DateTime.Now;
-                    _context.TblClasses.Add(cls);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    string fieldName = state.Key;
+                    foreach (var error in state.Value.Errors)
+                    {
+                        Console.WriteLine($"❌ Field: {fieldName} | Error: {error.ErrorMessage}");
+                    }
                 }
-                return View(cls);
             }
+            else
+            {
+                Console.WriteLine("✅ ModelState is VALID. Proceeding to save...");
+            }
+            if (ModelState.IsValid)
+            {
+                    var newClass = new TblClass
+                    {
+                        ClassName = model.ClassName,
+                        Description = model.Description,
+                        Subject = model.Subject,
+                        TeacherId = model.TeacherId ?? 0,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        Schedule = model.Schedule,
+                        IsActive = model.IsActive ?? true,
+                        Image = model.Image ?? "NaN",
+                        CreateDate = DateTime.Now,
+                        MaxStudents = model.MaxStudents
+                    };
+                    _context.TblClasses.Add(newClass);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                
+                }
+                var teachers = (from t in _context.TblUsers
+                                .Where(u => u.RoleId == 2)
+                                select new SelectListItem()
+                                {
+                                    Text = t.FullName,
+                                    Value = t.UserId.ToString()
+                                }
+                                ).ToList();
+                teachers.Insert(0, new SelectListItem()
+                {
+                    Text = "--Select Teacher--",
+                    Value = "0"
+                });
+            ViewBag.TeacherList = teachers;
+            return View(model);
+            
+            }
+            [HttpGet]    
             public IActionResult Edit(int id)
             {
                 var cls = _context.TblClasses.Find(id);
-                ViewBag.TeacherList = new SelectList(_context.TblUsers.Where(u => u.RoleId == 2), "UserId", "FullName");
-                return View(cls);
+                if (cls == null)
+                {
+                    return View("Error");
+                }
+                var vm = new ClassesVM
+                { 
+                    ClassId = cls.ClassId,        
+                    ClassName = cls.ClassName,
+                    Description = cls.Description,
+                    Subject = cls.Subject,
+                    TeacherId = cls.TeacherId,
+                    StartDate = cls.StartDate,
+                    EndDate = cls.EndDate,
+                    Schedule = cls.Schedule,
+                    IsActive = cls.IsActive ?? true,
+                    MaxStudents = cls.MaxStudents
+
+                };
+                ViewBag.TeacherList = new SelectList(
+                    _context.TblUsers.Where(u => u.RoleId == 2),
+                    "UserId", "FullName", cls.TeacherId
+                );
+            return View(vm);
             }
             [HttpPost]
-            public IActionResult Edit(TblClass model)
+            public IActionResult Edit(ClassesVM model)
             {
-                if (ModelState.IsValid)
+           
+            if (ModelState.IsValid)
                 {
-                    _context.Update(model);
+
+                    var oldClass = _context.TblClasses.FirstOrDefault(c => c.ClassId == model.ClassId);
+                    if (oldClass == null)
+                    {
+                        return NotFound();
+                    }
+                    oldClass.ClassName = model.ClassName;
+                    oldClass.Description = model.Description;
+                    oldClass.Subject = model.Subject;
+                    oldClass.TeacherId = model.TeacherId ?? 0;
+                    oldClass.StartDate = model.StartDate;
+                    oldClass.EndDate = model.EndDate;
+                    oldClass.Schedule = model.Schedule;
+                    oldClass.MaxStudents = model.MaxStudents;
+                    oldClass.IsActive = model.IsActive ?? true;
+                    oldClass.ModifedDate = DateTime.Now;
+                    _context.Update(oldClass);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
-            ViewBag.TeacherList = new SelectList(_context.TblUsers.Where(u => u.RoleId == 2), "UserId", "FullName");
+            ViewBag.TeacherList = new SelectList(
+            _context.TblUsers.Where(u => u.RoleId == 2),
+            "UserId", "FullName", model.TeacherId
+            );                                                                    
             return View(model);
             }
         }
