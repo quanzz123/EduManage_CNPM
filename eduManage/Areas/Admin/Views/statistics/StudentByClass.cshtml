@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "StudentByClass";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper"
+   <div class="content container-fluid">
+       <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="mt-5">
+                        <h4 class="card-title float-left mt-2">Thóng kê số lượng thành viên lớp học</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+	   <div class="row">
+			<div class="col-md-12 d-flex">
+				<div class="card card-table flex-fill">
+					
+					<div class="card-body">
+						<div class="table-responsive">
+                            <canvas id="studentChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+   </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@section Scripts {
+    <script>
+        const ctx = document.getElementById('studentChart');
+        let chartInstance;
+
+        async function loadStudentChart() {
+            const response = await fetch('/Admin/Statistics/GetStudentByClass');
+            const data = await response.json();
+
+            console.log(data); 
+
+            const labels = data.map(item => item.tenLop ?? item.tenlop);
+            const values = data.map(item => item.soLuong ?? item.soluong);
+
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số lượng học viên',
+                        data: values,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Số lượng học viên theo từng lớp'
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        loadStudentChart();
+    </script>
+}

@@ -61,6 +61,12 @@ namespace eduManage.Areas.Admin.Controllers
 
             
         }
+        [HttpGet]   
+        public IActionResult EditQuestion(int id)
+        {
+
+            return View();
+        }
         [HttpGet]
         public IActionResult AddQuestion(int id)
         {

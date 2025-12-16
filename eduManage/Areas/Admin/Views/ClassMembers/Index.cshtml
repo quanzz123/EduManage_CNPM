@@ -19,11 +19,12 @@
 								<thead>
 									<tr>
 										<th>Stt</th>
+										<th>MHV</th>
 										<th>Tên học viên</th>
 										<th>Lớp đăng ký</th>
 										<th>Trạng thái</th>
 										<th>Ngày tham gia</th>
-										<th>Tiến độ</th>
+										
 										<th>Điểm</th>
 										<th class="text-right">Tác vụ</th>
 									</tr>
@@ -36,11 +37,12 @@
 									{
 										<tr>
 											<td>@(stt++)</td>
+											<td>@item.Note</td>
 											<td>@item.User?.FullName</td>
 											<td>@item.Class?.ClassName</td>  <!-- ⚡ Tên lớp -->
 											<td>@item.Status</td>
 											<td>@item.JoinDate?.ToString("dd/MM/yyyy")</td>
-											<td>@item.Progress</td>
+											
 											<td>@item.FinalScore</td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">

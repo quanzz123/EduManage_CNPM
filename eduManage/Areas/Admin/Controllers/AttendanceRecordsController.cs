@@ -50,8 +50,35 @@ namespace eduManage.Areas.Admin.Controllers
                 .Where(r => r.SessionId == id)
                 .Include(r => r.User)
                 .ToList();
+            var existingRecords2 = (from r in _context.TblAttendanceRecords
+                                   join s in _context.TblAttendanceSessions on r.SessionId equals s.SessionsId
+                                   join c in _context.TblClasses on s.ClassId equals c.ClassId
+                                   join m in _context.TblClassMembers on c.ClassId equals m.ClassId
+                                   where r.SessionId == id
+                                   select new
+                                   {
+                                       Id = r.UserId,
+                                       sts = r.Status,
+                                       note = r.Note,
+                                       namcode = m.Note,
+                                       fullname = r.User.FullName
+
+
+                                   }).ToList();
+            var existingRecords3 = _context.TblAttendanceRecords
+            .Where(r => r.SessionId == id)
+            .Select(r => new
+            {
+                Id = r.UserId,
+                sts = r.Status,
+                note = r.Note,
+                namcode = r.Session.Class.TblClassMembers
+                              .FirstOrDefault(m => m.UserId == r.UserId).Note,
+                fullname = r.User.FullName
+            })
+            .ToList();
             List<AttendanceItem> students;
-            if (existingRecords.Any())
+            if (existingRecords3.Any())
             {
                 students = existingRecords
                     .Select(r => new AttendanceItem
@@ -59,7 +86,10 @@ namespace eduManage.Areas.Admin.Controllers
                         UserId = r.UserId,
                         FullName = r.User.FullName,
                         Status = r.StatusId,
-                        Note = r.Note
+                        Note = r.Note,
+                        NameCode = existingRecords3
+                            .FirstOrDefault(e => e.Id == r.UserId)?.namcode
+
                     })
                     .ToList();
             }
@@ -72,7 +102,8 @@ namespace eduManage.Areas.Admin.Controllers
                     {
                         UserId = x.UserId ?? 0,
                         FullName = x.User.FullName,
-                        Status = 1 
+                        Status = 1 ,
+                        NameCode = x.Note 
                     }).ToList();
             }
             var vm = new AttendanceViewModel

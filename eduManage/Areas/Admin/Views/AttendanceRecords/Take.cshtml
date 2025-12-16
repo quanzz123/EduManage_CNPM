@@ -90,7 +90,8 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th >STT</th>
-                                            <th >Tên Học Viên</th>
+                                            <th>Tên Học Viên</th>
+                                            <th>Mã học viên</th>
                                             <th >Có Mặt</th>
                                             <th>Vắng</th>
                                             <th >Muộn</th>
@@ -103,7 +104,8 @@
 										{
 											<tr>
 												<td>@(i + 1)</td>
-												<td>@Model.Students[i].FullName</td>
+                                                <td>@Model.Students[i].FullName</td>
+                                                <td>@Model.Students[i].NameCode</td>
 												@* <td>
 													<input type="hidden" name="Students[@i].UserId" value="@Model.Students[i].UserId" />
 													<div style="display: flex; gap: 10px;">

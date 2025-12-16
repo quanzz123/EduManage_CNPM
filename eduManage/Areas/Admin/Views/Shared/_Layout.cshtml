@@ -187,7 +187,8 @@
 							<a href="#"><i class="fas fa-suitcase"></i> <span>Thống kê</span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
 								<li><a asp-action="UserActiveByMonth" asp-controller="statistics">Thống kê tai khoản</a></li>
-
+								<li><a asp-action="StudentByClass" asp-controller="statistics">Thống kê thành viên lớp học</a></li>
+								<li><a asp-action="SubmissionRate" asp-controller="statistics">Thống kê tỉ lệ bài nộp</a></li>
 							</ul>
 						</li>
 						
@@ -203,9 +204,10 @@
 	<script src="~/admin/assets/js/bootstrap.min.js"></script>
 	<script src="~/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="~/admin/assets/plugins/raphael/raphael.min.js"></script>
-	<script src="~/admin/assets/plugins/morris/morris.min.js"></script>
-	<script src="~/admin/assets/js/chart.morris.js"></script>
+	@* <script src="~/admin/assets/plugins/morris/morris.min.js"></script> *@
+	@* @* <script src="~/admin/assets/js/chart.morris.js"></script> *@ 
 	<script src="~/admin/assets/js/script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	@RenderSection("Scripts", required: false)
 
 </body>

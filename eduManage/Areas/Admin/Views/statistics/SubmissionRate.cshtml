@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "SubmissionRate";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="mt-5">
+                        <h4 class="card-title float-left mt-2">
+                            Thống kê tỉ lệ bài nộp
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <select id="classSelect" class="form-select">
+                        <option value="">-- Chọn lớp --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6 d-flex">
+                <div class="card card-table flex-fill">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <canvas id="submissionRate"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const ctx = document.getElementById('submissionRate').getContext('2d');
+            if (!ctx) {
+                console.error("Không tìm thấy canvas hoặc không thể lấy context");
+                return;
+            }
+
+            let chartInstance;
+
+            async function loadClasses() {
+                const response = await fetch('/Admin/Statistics/GetClasses');
+                const classes = await response.json();
+                const select = document.getElementById('classSelect');
+                select.innerHTML = '<option value="">-- Chọn lớp --</option>';
+                classes.forEach(cls => {
+                    const opt = document.createElement('option');
+                    opt.value = cls.classId;
+                    opt.textContent = cls.className;
+                    select.appendChild(opt);
+                });
+            }
+
+            async function loadSubmissionRate(classId) {
+                if (!classId) return;
+                const response = await fetch(`/Admin/Statistics/GetSubmissionRate?classid=${classId}`);
+                const data = await response.json();
+                console.log("Dữ liệu nộp bài:", data);
+
+                const { danop, chuanop } = data; 
+                if (chartInstance) chartInstance.destroy();
+
+                chartInstance = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Đã nộp', 'Chưa nộp'],
+                        datasets: [{
+                            data: [danop, chuanop],
+                            backgroundColor: ['#4CAF50', '#F44336']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            title: { display: true, text: 'Tỷ lệ nộp bài' }
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('classSelect').addEventListener('change', (e) => {
+                const classId = e.target.value;
+                loadSubmissionRate(classId);
+            });
+
+            loadClasses();
+        });
+    </script>
+}
+
+

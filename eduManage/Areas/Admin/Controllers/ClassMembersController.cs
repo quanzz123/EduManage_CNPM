@@ -2,6 +2,10 @@
 using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Text;
+using eduManage.Utilities;
 
 namespace eduManage.Areas.Admin.Controllers
 {
@@ -162,8 +166,14 @@ namespace eduManage.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ClassMemberVM vm)
         {
+
             if (ModelState.IsValid)
             {
+                var classes = await _context.TblClasses.FindAsync(vm.ClassId);
+                String classcođe = StringHelper.ToAbbreviation(classes.ClassName);
+                String createDate = classes.CreateDate.HasValue ? classes.CreateDate.Value.ToString("yyyyMMdd") : "N/A";
+                String userID = vm.UserId.ToString();
+                String msv = $"{classcođe}{createDate}{userID}";
                 var member = new TblClassMember
                 {
                     ClassId = vm.ClassId,
@@ -172,7 +182,7 @@ namespace eduManage.Areas.Admin.Controllers
                     Status = vm.Status,
                     Progress = vm.Progress,
                     FinalScore = vm.FinalScore,
-                    Note = vm.Note
+                    Note = msv
                 };
 
                 _context.TblClassMembers.Add(member);
