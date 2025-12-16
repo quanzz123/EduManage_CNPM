@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using eduManage.Utilities;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,7 +22,7 @@
 	<div class="main-wrapper">
 		<div class="header">
 			<div class="header-left">
-				<a href="index.html" class="logo"> <img src="~/admin/assets/img/hotel_logo.png" width="50" height="70" alt="logo"> <span class="logoclass">Quản trị</span> </a>
+				<a href="index.html" class="logo"> <img src="~/admin/assets/img/hotel_logo.png" width="50" height="70" alt="logo"> <span class="logoclass">@Functions._FullName</span> </a>
 				<a href="index.html" class="logo logo-small"> <img src="~/admin/assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a>
 			</div>
 			<a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -114,10 +115,13 @@
 						<div class="user-header">
 							<div class="avatar avatar-sm"> <img src="~/admin/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle"> </div>
 							<div class="user-text">
-								<h6>Soeng Souy</h6>
-								<p class="text-muted mb-0">Administrator</p>
+								<h6>@Functions._UserName</h6>
+								<p class="text-muted mb-0">@Functions._RoleName</p>
 							</div>
-						</div> <a class="dropdown-item" href="profile.html">My Profile</a> <a class="dropdown-item" href="settings.html">Account Settings</a> <a class="dropdown-item" href="login.html">Logout</a>
+						</div> 
+						<a class="dropdown-item" href="profile.html">Trang cá nhân</a> 
+						<a class="dropdown-item" href="settings.html">Cài đặt</a> 
+						<a class="dropdown-item" asp-action="Logout" asp-controller="Home" asp-area="Admin">Đăng xuất</a>
 					</div>
 				</li>
 			</ul>
@@ -132,25 +136,31 @@
 			<div class="sidebar-inner slimscroll">
 				<div id="sidebar-menu" class="sidebar-menu">
 					<ul>
-						<li class="active"> <a href="index.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
+						<li class="active"> <a asp-action="Index" asp-controller="Home" asp-area="Admin"><i class="fas fa-tachometer-alt"></i> <span>Trang chủ</span></a> </li>
 						<li class="list-divider"></li>
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí tài khoản</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="Acounts">danh sách tài khoản</a></li>
-								<li><a asp-action="Create" asp-controller="Acounts">Thêm mới</a></li>
+						@if(Functions._RoleId == 1) {
+
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí tài khoản</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="Acounts">danh sách tài khoản</a></li>
+									<li><a asp-action="Create" asp-controller="Acounts">Thêm mới</a></li>
 								
-							</ul>
-						</li>
+								</ul>
+							</li>
+						}
 
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí lớp học</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="Classes">danh sách lớp học</a></li>
-								<li><a asp-action="Create" asp-controller="Classes">Thêm mới</a></li>
+						@if(Functions._RoleId == 1) {
 
-							</ul>
-						</li>
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí lớp học</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="Classes">danh sách lớp học</a></li>
+									<li><a asp-action="Create" asp-controller="Classes">Thêm mới</a></li>
+
+								</ul>
+							</li>
+						}
 
 						<li class="submenu">
 							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí học tập</span> <span class="menu-arrow"></span></a>
@@ -186,7 +196,10 @@
 						<li class="submenu">
 							<a href="#"><i class="fas fa-suitcase"></i> <span>Thống kê</span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="UserActiveByMonth" asp-controller="statistics">Thống kê tai khoản</a></li>
+								@if(Functions._RoleId == 1) {
+
+									<li><a asp-action="UserActiveByMonth" asp-controller="statistics">Thống kê tài khoản khoản</a></li>
+								}
 								<li><a asp-action="StudentByClass" asp-controller="statistics">Thống kê thành viên lớp học</a></li>
 								<li><a asp-action="SubmissionRate" asp-controller="statistics">Thống kê tỉ lệ bài nộp</a></li>
 							</ul>

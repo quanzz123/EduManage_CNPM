@@ -7,11 +7,24 @@ namespace eduManage.Utilities
     public class Functions
     {
         public static int _UserId = 0;
+        public static int _RoleId = 0;
+        public static string _RoleName = String.Empty;
         public static string _UserName = String.Empty;
+        public static string _FullName = String.Empty;
         public static string _Email = String.Empty;
         public static string _Message = string.Empty;
         public static string _MessageEmail = string.Empty;
 
+        public static bool CheckRole(int RoleId)
+        {
+            return _RoleId == RoleId;
+        }
+        public static bool IsLogin()
+        {
+            if (String.IsNullOrEmpty(Functions._Email) || String.IsNullOrEmpty(Functions._UserName) || (Functions._UserId <= 0))
+                return false;
+            return true;
+        }
         public static string HashPassword(string password)
         {
             // Tạo salt ngẫu nhiên

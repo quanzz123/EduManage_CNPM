@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.Utilities;
 using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,10 @@ namespace eduManage.Areas.Admin.Controllers
         }
         public IActionResult Index(int id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
             var lc = _context.TblLessionContents.Where(l => l.LessionId == id).ToList();
             ViewBag.LessonId = id;
             return View(lc);

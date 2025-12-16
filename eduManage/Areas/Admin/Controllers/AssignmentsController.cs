@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using eduManage.Models;
 using eduManage.ViewModels;
+using eduManage.Utilities;
 
 namespace eduManage.Areas.Admin.Controllers
 {
@@ -15,7 +16,12 @@ namespace eduManage.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var clasLis = _context.TblClasses.Where(t => t.TeacherId == 3).ToList();
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
+            var userId = Functions._UserId;
+            var clasLis = _context.TblClasses.Where(t => t.TeacherId == userId).ToList();
             return View(clasLis);
         }
         public IActionResult Details(int id)

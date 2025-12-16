@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.Utilities;
 using eduManage.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,7 +17,12 @@ namespace eduManage.Areas.Admin.Controllers
             }
             public IActionResult Index()
             {
-                var classList = _context.TblClasses.Include(m => m.Teacher).OrderBy(m => m.ClassId).ToList();
+                if (!Functions.IsLogin())
+                {
+                    return RedirectToAction("Index", "Login", new { area = "Admin" });
+                }
+
+            var classList = _context.TblClasses.Include(m => m.Teacher).OrderBy(m => m.ClassId).ToList();
 
                 return View(classList);
             }

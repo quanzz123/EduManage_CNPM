@@ -1,4 +1,5 @@
 ﻿using eduManage.Models;
+using eduManage.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,10 @@ namespace eduManage.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
             return View();
         }
         public IActionResult UserActiveByMonth()
@@ -56,7 +61,9 @@ namespace eduManage.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStudentByClass()
         {
+            var userid = Functions._UserId;
             var data = await _context.TblClasses
+                .Where(c => c.TeacherId == userid)
                 .GroupJoin(_context.TblClassMembers,
                 c => c.ClassId, cm => cm.ClassId,
                 (c, members) => new

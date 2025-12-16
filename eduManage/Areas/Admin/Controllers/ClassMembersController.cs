@@ -19,6 +19,10 @@ namespace eduManage.Areas.Admin.Controllers
         }
         public IActionResult Index(int? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
             // Join 3 bảng: ClassMembers + Users + Classes
             var query = from cm in _context.TblClassMembers
                         join u in _context.TblUsers on cm.UserId equals u.UserId
@@ -34,7 +38,7 @@ namespace eduManage.Areas.Admin.Controllers
                             Note = cm.Note,
                             UserId = cm.UserId,
                             User = u,
-                            Class = c // ⚡ Gán luôn Class để hiển thị
+                            Class = c 
                         };
 
             if (id != null)
@@ -170,10 +174,10 @@ namespace eduManage.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var classes = await _context.TblClasses.FindAsync(vm.ClassId);
-                String classcođe = StringHelper.ToAbbreviation(classes.ClassName);
+                String classcode = StringHelper.ToAbbreviation(classes.ClassName);
                 String createDate = classes.CreateDate.HasValue ? classes.CreateDate.Value.ToString("yyyyMMdd") : "N/A";
                 String userID = vm.UserId.ToString();
-                String msv = $"{classcođe}{createDate}{userID}";
+                String msv = $"{classcode}{createDate}{userID}";
                 var member = new TblClassMember
                 {
                     ClassId = vm.ClassId,
