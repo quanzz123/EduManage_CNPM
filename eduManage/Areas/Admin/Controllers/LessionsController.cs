@@ -19,6 +19,11 @@ namespace eduManage.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index", "Login", new { area = "Admin" });
             }
+
+            if (!Functions.CheckRole(2))
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
             var userId = Functions._UserId;
             var clasLis = _context.TblClasses.Where(t => t.TeacherId == userId).ToList();
             return View(clasLis);

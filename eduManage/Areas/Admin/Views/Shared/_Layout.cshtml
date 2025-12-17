@@ -161,37 +161,48 @@
 								</ul>
 							</li>
 						}
+						@if(Functions._RoleId == 2) {
 
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí học tập</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="Lessions">danh sách bài giảng</a></li>
-								<li><a asp-action="Create" asp-controller="Lessions">Thêm mới</a></li>
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí học tập</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="Lessions">danh sách bài giảng</a></li>
+									<li><a asp-action="Create" asp-controller="Lessions">Thêm mới</a></li>
 
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí bài tập</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="Assignments">danh sách bài tập</a></li>
+								</ul>
+							</li>
+						}
+						@if(Functions._RoleId == 2) {
 
-							</ul>
-						</li>
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí bài tập</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="Assignments">danh sách bài tập</a></li>
 
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí điểm danh</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="AttendanceRecords"> danh sách lớp</a></li>
+								</ul>
+							</li>
+						}
+						@if(Functions._RoleId == 2) {
 
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí đánh giá</span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a asp-action="index" asp-controller="Quiz"> danh sách lớp</a></li>
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí điểm danh</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="AttendanceRecords"> danh sách lớp</a></li>
 
-							</ul>
-						</li>
+								</ul>
+							</li>
+						}
+
+						@if (Functions._RoleId == 2) {
+
+							<li class="submenu">
+								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí đánh giá</span> <span class="menu-arrow"></span></a>
+								<ul class="submenu_class" style="display: none;">
+									<li><a asp-action="index" asp-controller="Quiz"> danh sách lớp</a></li>
+
+								</ul>
+							</li>
+						}
 
 						<li class="submenu">
 							<a href="#"><i class="fas fa-suitcase"></i> <span>Thống kê</span> <span class="menu-arrow"></span></a>
