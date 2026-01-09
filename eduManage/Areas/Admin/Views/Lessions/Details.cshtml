@@ -12,12 +12,9 @@
 		</div>
 		<div class="row">
 			@foreach(var item in Model) {
-
 				<div class="col-12 col-sm-8 col-md-6 col-lg-4">
 					<div class="card">
-						<a asp-action="index" asp-controller="LessonContent" asp-route-id="@item.LessonId"><img class="card-img" src="~/admin/assets/img/product/product-01.jpg" alt=""></a>
-						
-						@* <div class="card-img-overlay"> <a href="#" class="btn btn-light btn-sm">Hotel</a> </div> *@
+						<a asp-action="index" asp-controller="LessonContent" asp-route-id="@item.LessonId"><img class="card-img" src="~/admin/assets/img/product/4434443.jpg" alt=""></a>						
 						<div class="card-body">
 							<h4 class="card-title">@item.Title</h4>
 							<p class="card-text mt-3">@Html.Raw(item.Description)</p> <a asp-action="Edit" asp-route-id ="@item.LessonId" class="btn btn-info">Xem thêm</a>
@@ -25,7 +22,6 @@
 					</div>
 				</div>
 			}
-
 		</div>
 	</div>
 </div>

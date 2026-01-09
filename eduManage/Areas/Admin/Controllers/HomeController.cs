@@ -1,4 +1,5 @@
-﻿using eduManage.Utilities;
+﻿using eduManage.Models;
+using eduManage.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eduManage.Areas.Admin.Controllers
@@ -6,6 +7,11 @@ namespace eduManage.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
+        private readonly EdumanageContext _context;
+        public HomeController(EdumanageContext context)
+        {
+            _context = context;
+        }
 
         public IActionResult Index()
 
@@ -18,6 +24,9 @@ namespace eduManage.Areas.Admin.Controllers
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
+            var UserID = Functions._UserId;
+            var ClassList = _context.TblClasses.Where(t => t.TeacherId == UserID).ToList();
+            ViewBag.ClassList = ClassList;
             return View();
         }
 
