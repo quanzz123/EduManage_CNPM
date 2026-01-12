@@ -20,7 +20,7 @@ namespace eduManage.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Login", new { area = "Admin" });
             }
 
-            if (!Functions.CheckRole(2))
+            if (!Functions.CheckRole(2) && !Functions.CheckRole(1))
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

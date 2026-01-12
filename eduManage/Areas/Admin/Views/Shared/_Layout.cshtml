@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="~/admin/assets/css/feathericon.min.css">
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="~/admin/assets/plugins/morris/morris.css">
+	<link rel="stylesheet"  href="~/admin/assets/css/bootstrap-datetimepicker.min.css">
 	<link rel="stylesheet" href="~/admin/assets/css/style.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -141,7 +142,7 @@
 						@if(Functions._RoleId == 1) {
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí tài khoản</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-user"></i> <span>Quản lý tài khoản</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="Acounts">danh sách tài khoản</a></li>
 									<li><a asp-action="Create" asp-controller="Acounts">Thêm mới</a></li>
@@ -150,21 +151,23 @@
 							</li>
 						}
 
-						@if(Functions._RoleId == 1) {
+						@if(Functions._RoleId == 1 || Functions._RoleId == 2) {
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí lớp học</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Quản lý lớp học</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="Classes">danh sách lớp học</a></li>
+									<li><a asp-action="MyClasses" asp-controller="Classes">Lớp học của tôi</a></li>
 									<li><a asp-action="Create" asp-controller="Classes">Thêm mới</a></li>
 
 								</ul>
 							</li>
 						}
-						@if(Functions._RoleId == 2) {
+						@if (Functions._RoleId == 1 || Functions._RoleId == 2)
+						{
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí học tập</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-folder-open"></i> <span>Quản lý học tập</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="Lessions">danh sách bài giảng</a></li>
 									<li><a asp-action="Create" asp-controller="Lessions">Thêm mới</a></li>
@@ -172,20 +175,22 @@
 								</ul>
 							</li>
 						}
-						@if(Functions._RoleId == 2) {
+						@if (Functions._RoleId == 1 || Functions._RoleId == 2)
+						{
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí bài tập</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-book"></i> <span>Quản lý bài tập</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="Assignments">danh sách bài tập</a></li>
 
 								</ul>
 							</li>
 						}
-						@if(Functions._RoleId == 2) {
+						@if (Functions._RoleId == 1 || Functions._RoleId == 2)
+						{
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí điểm danh</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-user-check"></i> <span>Quản lý điểm danh</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="AttendanceRecords"> danh sách lớp</a></li>
 
@@ -193,10 +198,11 @@
 							</li>
 						}
 
-						@if (Functions._RoleId == 2) {
+						@if (Functions._RoleId == 1 || Functions._RoleId == 2)
+						{
 
 							<li class="submenu">
-								<a href="#"><i class="fas fa-suitcase"></i> <span>Quản lí đánh giá</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fas fa-clipboard-check"></i> <span>Quản lý đánh giá</span> <span class="menu-arrow"></span></a>
 								<ul class="submenu_class" style="display: none;">
 									<li><a asp-action="index" asp-controller="Quiz"> danh sách lớp</a></li>
 
@@ -205,7 +211,7 @@
 						}
 
 						<li class="submenu">
-							<a href="#"><i class="fas fa-suitcase"></i> <span>Thống kê</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fas fa-chart-bar"></i> <span>Thống kê</span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
 								@if(Functions._RoleId == 1) {
 
@@ -230,6 +236,8 @@
 	<script src="~/admin/assets/plugins/raphael/raphael.min.js"></script>
 	@* <script src="~/admin/assets/plugins/morris/morris.min.js"></script> *@
 	@* @* <script src="~/admin/assets/js/chart.morris.js"></script> *@ 
+	<script src="~/admin/assets/js/moment.min.js"></script>
+	<script src="~/admin/assets/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="~/admin/assets/js/script.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	@RenderSection("Scripts", required: false)

@@ -5,7 +5,9 @@
 			<div class="row align-items-center">
 				<div class="col">
 					<div class="mt-5">
-						<h4 class="card-title float-left mt-2">Dach sách bài học</h4><a asp-action="Create" asp-route-id="@ViewBag.LessonId" class="btn btn-primary float-right veiwbutton">Thêm mới</a>
+						<h4 class="card-title float-left mt-2">Danh sách bài học</h4>
+						<a asp-action="Create" asp-route-id="@ViewBag.LessonId" class="btn btn-primary float-right veiwbutton">Thêm mới</a>
+						
 					</div>
 				</div>
 			</div>
@@ -24,12 +26,13 @@
 										<th>Tệp</th>
 										<th>Thời lượng</th>
 										<th>Vị trí</th>
-										<th class="text-right">Tác vụ</th>
+										<th>Hành động</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 									@{
-										int stt = 0;
+										int stt = 1;
 									}
 									@foreach (var item in Model)
 									{
@@ -43,19 +46,16 @@
 											<td>
 												@if (!string.IsNullOrEmpty(item.ContentUrl))
 												{
-													<a class="btn btn-sm bg-success-light mr-2" asp-action="Download" asp-route-id="@item.ContentId" class="btn btn-sm btn-outline-primary">Tải</a>
+													<a class="btn  btn-primary" asp-action="Download" asp-route-id="@item.ContentId" class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i>Tải xuống</a>
 												}
 											</td>
 											<td>@item.Duration</td>
 											<td>@item.OrderIdx</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" asp-action="Details" asp-route-id="@item.ContentId"><i class="fas fa-pencil-alt m-r-5"></i>chi tiết</a>
-
-													</div>
+											<td>
+												<a asp-action="Edit" asp-controller="LessonContent" asp-route-contentid="@item.ContentId" class="btn btn-info"><i class="fas fa-edit"></i>Sửa</a>|
+												<a asp-action="Edit" asp-controller="LessonContent" asp-route-contentid="@item.ContentId" class="btn btn-danger"><i class="fas fa-trash"></i>xoá</a>
 											</td>
+											
 										</tr>
 
 									}
@@ -63,7 +63,13 @@
 							</table>
 						</div>
 					</div>
+
 				</div>
+					<div class="text-right mt-3">
+					<a asp-action="Details" asp-controller="Lessions" asp-route-id="@ViewBag.LessonId" class="btn btn-secondary">
+							<i class="fas fa-arrow-left"></i> Trở về
+						</a>
+					</div>
 			</div>
 		</div>
 	</div>

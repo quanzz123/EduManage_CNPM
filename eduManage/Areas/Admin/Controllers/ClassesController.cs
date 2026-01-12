@@ -21,101 +21,124 @@ namespace eduManage.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index", "Login", new { area = "Admin" });
                 }
-
+                if (!Functions.CheckRole(1))
+                {
+                    return RedirectToAction("AccessDenied", "Error");
+                }
             var classList = _context.TblClasses.Include(m => m.Teacher).OrderBy(m => m.ClassId).ToList();
 
                 return View(classList);
             }
 
-            public IActionResult Create()
+        public IActionResult MyClasses()
+        {
+            if (!Functions.IsLogin())
             {
-                var teachers = (from t in _context.TblUsers
-                                .Where(u => u.RoleId == 2)
-                                select new SelectListItem()
-                                {
-                                    Text = t.FullName,
-                                    Value = t.UserId.ToString()
-                                }
-                                ).ToList();
-                teachers.Insert(0, new SelectListItem()
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
+           
+
+            var userId = Functions._UserId;
+            var classList = _context.TblClasses
+                .Where(c => c.TeacherId == userId)
+                .Include(m => m.Teacher)
+                .OrderBy(m => m.ClassId)
+                .ToList();
+            return View(classList);
+        }
+        public IActionResult Create()
+            {
+                if(Functions._RoleId != 1)
                 {
-                    Text = "--Select Teacher--",
-                    Value = "0"
-                });
-                ViewBag.TeacherList = teachers;
-                return View();
+                    return RedirectToAction("AccessDenied", "Error", new { area = "Admin" });
+                }
+                var teachers = (from t in _context.TblUsers
+                                    .Where(u => u.RoleId == 2)
+                                    select new SelectListItem()
+                                    {
+                                        Text = t.FullName,
+                                        Value = t.UserId.ToString()
+                                    }
+                                    ).ToList();
+                    teachers.Insert(0, new SelectListItem()
+                    {
+                        Text = "--Select Teacher--",
+                        Value = "0"
+                    });
+                    ViewBag.TeacherList = teachers;
+                    return View();
             }
             [HttpPost]
             public IActionResult Create(ClassesVM model)
             {
-            Console.WriteLine("Creating class with the following details:");
-            Console.WriteLine($"ClassName: {model.ClassName}"); 
-            Console.WriteLine($"Desc: {model.Description}"); 
-            Console.WriteLine($"subject: {model.Subject}"); 
-            Console.WriteLine($"maxstudeny: {model.MaxStudents}"); 
-            Console.WriteLine($"start: {model.StartDate}");
-            Console.WriteLine($"end: {model.EndDate}");
-            Console.WriteLine($"acticve: {model.IsActive}");
-            Console.WriteLine($"teacher: {model.TeacherId}");
-            if (!ModelState.IsValid)
-            {
-                Console.WriteLine("⚠️ ModelState is INVALID. Showing validation errors:");
-
-                foreach (var state in ModelState)
+                if (Functions._RoleId != 1)
                 {
-                    string fieldName = state.Key;
-                    foreach (var error in state.Value.Errors)
+                    return RedirectToAction("AccessDenied", "Error", new { area = "Admin" });
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    Console.WriteLine("⚠️ ModelState is INVALID. Showing validation errors:");
+
+                    foreach (var state in ModelState)
                     {
-                        Console.WriteLine($"❌ Field: {fieldName} | Error: {error.ErrorMessage}");
+                        string fieldName = state.Key;
+                        foreach (var error in state.Value.Errors)
+                        {
+                            Console.WriteLine($"❌ Field: {fieldName} | Error: {error.ErrorMessage}");
+                        }
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine("✅ ModelState is VALID. Proceeding to save...");
-            }
-            if (ModelState.IsValid)
-            {
-                    var newClass = new TblClass
-                    {
-                        ClassName = model.ClassName,
-                        Description = model.Description,
-                        Subject = model.Subject,
-                        TeacherId = model.TeacherId ?? 0,
-                        StartDate = model.StartDate,
-                        EndDate = model.EndDate,
-                        Schedule = model.Schedule,
-                        IsActive = model.IsActive ?? true,
-                        Image = model.Image ?? "NaN",
-                        CreateDate = DateTime.Now,
-                        MaxStudents = model.MaxStudents
-                    };
-                    _context.TblClasses.Add(newClass);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index");
-                
-                }
-                var teachers = (from t in _context.TblUsers
-                                .Where(u => u.RoleId == 2)
-                                select new SelectListItem()
-                                {
-                                    Text = t.FullName,
-                                    Value = t.UserId.ToString()
-                                }
-                                ).ToList();
-                teachers.Insert(0, new SelectListItem()
+                else
                 {
-                    Text = "--Select Teacher--",
-                    Value = "0"
-                });
-            ViewBag.TeacherList = teachers;
+                    Console.WriteLine("✅ ModelState is VALID. Proceeding to save...");
+                }
+                if (ModelState.IsValid)
+                {
+                        var newClass = new TblClass
+                        {
+                            ClassName = model.ClassName,
+                            Description = model.Description,
+                            Subject = model.Subject,
+                            TeacherId = model.TeacherId ?? 0,
+                            StartDate = model.StartDate,
+                            EndDate = model.EndDate,
+                            Schedule = model.Schedule,
+                            IsActive = model.IsActive ?? true,
+                            Image = model.Image ?? "NaN",
+                            CreateDate = DateTime.Now,
+                            MaxStudents = model.MaxStudents
+                        };
+                        _context.TblClasses.Add(newClass);
+                        _context.SaveChanges();
+                        return RedirectToAction("Index");
+                
+                    }
+                    var teachers = (from t in _context.TblUsers
+                                    .Where(u => u.RoleId == 2)
+                                    select new SelectListItem()
+                                    {
+                                        Text = t.FullName,
+                                        Value = t.UserId.ToString()
+                                    }
+                                    ).ToList();
+                    teachers.Insert(0, new SelectListItem()
+                    {
+                        Text = "--Select Teacher--",
+                        Value = "0"
+                    });
+                ViewBag.TeacherList = teachers;
             return View(model);
             
             }
             [HttpGet]    
             public IActionResult Edit(int id)
             {
-                var cls = _context.TblClasses.Find(id);
+                if (Functions._RoleId != 1)
+                {
+                    return RedirectToAction("AccessDenied", "Error", new { area = "Admin" });
+                }
+            var cls = _context.TblClasses.Find(id);
                 if (cls == null)
                 {
                     return View("Error");

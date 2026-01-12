@@ -98,5 +98,82 @@ namespace eduManage.Areas.Admin.Controllers
 
             return "/uploads/" + fileName;
         }
+
+        [HttpGet]
+        public IActionResult Edit(int contentid)
+        {
+            var lessonContent = _context.TblLessionContents.FirstOrDefault(lc => lc.ContentId == contentid);
+            if (lessonContent == null)
+            {
+                Console.WriteLine("Khong tim thay bai giang");
+                return NotFound();
+            }
+            Console.WriteLine("Tieu de"+ lessonContent.Title);
+            LessonContentVM vm = new LessonContentVM
+            {
+                ContentId = lessonContent.ContentId,
+                LessionId = lessonContent.LessionId,
+                Title = lessonContent.Title,
+                ContentType = lessonContent.ContentType,
+                ContentUrl = lessonContent.ContentUrl,
+                Duration = lessonContent.Duration,
+                OrderIdx = lessonContent.OrderIdx,
+                CreateDate = lessonContent.CreateDate
+            };
+            ViewBag.LessonId = lessonContent.LessionId;
+            return View(vm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(LessonContentVM vm, IFormFile file)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var lessonContent = _context.TblLessionContents.FirstOrDefault(lc => lc.ContentId == vm.ContentId);
+                    if (lessonContent == null)
+                    {
+                        return NotFound();
+                    }
+                    if(vm.Duration <= 0)
+                    {
+                        ModelState.AddModelError("Duration", "Thời lượng phải lớn hơn 0.");
+                        ViewBag.error = "Thời lượng phải lớn hơn 0.";
+                        return View(vm);
+                    }
+                    lessonContent.Title = vm.Title;
+                    lessonContent.ContentType = vm.ContentType;
+                    lessonContent.Duration = vm.Duration;
+                    lessonContent.OrderIdx = vm.OrderIdx;
+                    if (file != null && file.Length > 0)
+                    {
+                        // Xóa file cũ nếu có
+                        if (!string.IsNullOrEmpty(lessonContent.ContentUrl))
+                        {
+                            var oldFilePath = Path.Combine(_env.WebRootPath, lessonContent.ContentUrl.TrimStart('/'));
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+                        // Lưu file mới
+                        var savedFileUrl = SaveFile(file);
+                        lessonContent.ContentUrl = savedFileUrl;
+                    }
+                    _context.TblLessionContents.Update(lessonContent);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index", new { id = vm.LessionId });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                ModelState.AddModelError("", "Đã xảy ra lỗi khi cập nhật bài giảng.");
+                return View();
+            }
+
+            return View(vm);
+        }
     }
 }

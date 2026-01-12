@@ -22,6 +22,11 @@ namespace eduManage.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(String email, string password)
         {
+            if(email == null || password == null)
+            {
+                ModelState.AddModelError("", "Vui long nhap day du thong tin");
+                return View();
+            }
             var user = await _context.TblUsers.Include(r => r.Role).FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
