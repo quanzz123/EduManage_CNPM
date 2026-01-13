@@ -124,8 +124,18 @@ namespace eduManage.Areas.Admin.Controllers
             return View(vm);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(LessonContentVM vm, IFormFile file)
+        public async Task<IActionResult> Edit(LessonContentVM? vm, IFormFile? file)
         {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                    // Hoặc dùng debugger để xem
+                }
+                return View(vm);
+            }
             try
             {
                 if (ModelState.IsValid)
